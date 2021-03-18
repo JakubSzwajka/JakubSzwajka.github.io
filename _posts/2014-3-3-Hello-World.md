@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Project starter!
-published: true
+published: false
 ---
 
 Let's start this blog very simple. I made my first shell script! As we all programmers want to automate, I have automated.. starting a project.. 😅.  
