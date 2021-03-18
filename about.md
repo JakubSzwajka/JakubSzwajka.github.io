@@ -9,4 +9,4 @@ Hi, I'm Jakub and I will share some thoughts and ideas here 😉.
 
 ### Contact me
 
-[email@domain.com](mailto:szwajkajakub@gmail.com)
+[szwajkajakub@gmail.com](mailto:szwajkajakub@gmail.com)
