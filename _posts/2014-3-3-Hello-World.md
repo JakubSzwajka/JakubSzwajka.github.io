@@ -1,10 +1,21 @@
 ---
 layout: post
-title: You're up and running!
+title: Project starter!
+published: true
 ---
 
-Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
+Let's start this blog very simple. I made my first shell script! As we all programmers want to automate, I have automated.. starting a project.. 😅.  
 
-![_config.yml]({{ site.baseurl }}/images/config.png)
+The idea is very simple. 
 
-The easiest way to make your first post is to edit this one. Go into /_posts/ and update the Hello World markdown file. For more instructions head over to the [Jekyll Now repository](https://github.com/barryclark/jekyll-now) on GitHub.
+In my console i wanted to skin all operations like creating a virtual env for python project, initializing a git repo, adding a readme and .gitignore file. 
+
+![image](link_to_image)
+
+here goes some code 
+
+
+
+TODO: 
+- make a linux version!
+- add some options to exclude some files 
