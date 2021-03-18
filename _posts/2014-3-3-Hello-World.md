@@ -10,7 +10,7 @@ The idea is very simple.
 
 In my console i wanted to skin all operations like creating a virtual env for python project, initializing a git repo, adding a readme and .gitignore file. 
 
-![image](link_to_image)
+![image](_images/project_starter_1.png)
 
 here goes some code 
 
