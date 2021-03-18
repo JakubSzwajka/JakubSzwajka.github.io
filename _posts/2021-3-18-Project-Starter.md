@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Project starter!
-published: false
+published: true
 ---
 
 Let's start this blog very simple. I made my first shell script! As we all programmers want to automate, I have automated.. starting a project.. 😅.  
@@ -12,10 +12,11 @@ In my console i wanted to skin all operations like creating a virtual env for py
 
 ![image](_images/project_starter_1.png)
 
-here goes some code 
+Check the code [here](https://github.com/JakubSzwajka/new_project_starter)
+
+Choose a file you want (now it is only for windows) and add it to your ```C:/Windows/System32```
 
 
-
-TODO: 
+**TODO:** 
 - make a linux version!
 - add some options to exclude some files 
