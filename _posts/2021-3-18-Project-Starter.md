@@ -2,6 +2,8 @@
 layout: post
 title: Project starter!
 published: true
+repository: https://github.com/JakubSzwajka/new_project_starter
+status: still in progress
 ---
 
 Let's start this blog very simple. I made my first shell script! As we all programmers want to automate, I have automated.. starting a project.. 😅.  
