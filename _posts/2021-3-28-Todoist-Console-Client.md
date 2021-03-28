@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Todoist Console Client
-published: true
+published: false
 repository: 'https://github.com/JakubSzwajka/todoist_console_client'
 status: still in progress
 ---
