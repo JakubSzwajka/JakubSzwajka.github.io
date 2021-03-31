@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Todoist Console Client - the beginig 
-published: false
+published: true
 ---
 
 
