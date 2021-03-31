@@ -6,6 +6,8 @@ repository: https://github.com/JakubSzwajka/new_project_starter
 status: still in progress
 ---
 
+## 3.. 2.. 1.. go!
+
 Let's start this blog very simple. I made my first shell script! As we all programmers want to automate, I have automated.. starting a project.. 😅.  
 
 The idea is very simple. 
@@ -14,11 +16,9 @@ In my console i wanted to skin all operations like creating a virtual env for py
 
 ![image](https://github.com/JakubSzwajka/JakubSzwajka.github.io/blob/master/_posts/_images/project_starter_1.png?raw=true)
 
+## How to use it? 
+
 Check the code [here](https://github.com/JakubSzwajka/new_project_starter)
 
-Choose a file you want (now it is only for windows) and add it to your ```C:/Windows/System32```
+Choose a file you want (now it is only for windows) and add it to your ```C:/Windows/System32``` or any listed on PATH directory. Now, enjoy spending 2 minutes less on starting your new project 👌.
 
-
-**TODO:** 
-- make a linux version!
-- add some options to exclude some files
