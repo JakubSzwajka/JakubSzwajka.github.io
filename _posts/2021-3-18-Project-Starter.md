@@ -6,7 +6,7 @@ repository: https://github.com/JakubSzwajka/new_project_starter
 status: still in progress
 ---
 
-## 3.. 2.. 1.. go!
+### 3.. 2.. 1.. go!
 
 Let's start this blog very simple. I made my first shell script! As we all programmers want to automate, I have automated.. starting a project.. 😅.  
 
@@ -16,7 +16,7 @@ In my console i wanted to skin all operations like creating a virtual env for py
 
 ![image](https://github.com/JakubSzwajka/JakubSzwajka.github.io/blob/master/_posts/_images/project_starter_1.png?raw=true)
 
-## How to use it? 
+### How to use it? 
 
 Check the code [here](https://github.com/JakubSzwajka/new_project_starter)
 
