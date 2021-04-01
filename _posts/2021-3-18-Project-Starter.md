@@ -12,7 +12,7 @@ Let's start this blog very simple. I made my first shell script! As we all progr
 
 The idea is very simple. 
 
-In my console i wanted to skin all operations like creating a virtual env for python project, initializing a git repo, adding a readme and .gitignore file. 
+In my console i wanted to skip all operations like creating a virtual env for python project, initializing a git repo, adding a readme and .gitignore file. 
 
 ![image](https://github.com/JakubSzwajka/JakubSzwajka.github.io/blob/master/_posts/_images/project_starter_1.png?raw=true)
 
