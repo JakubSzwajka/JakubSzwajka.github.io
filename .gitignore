@@ -3,8 +3,10 @@ _site
 .jekyll
 .jekyll-metadata
 .bundle
+.vscode
 .sass-cache
 Gemfile
 Gemfile.lock
 node_modules
 package.json
+dummy
