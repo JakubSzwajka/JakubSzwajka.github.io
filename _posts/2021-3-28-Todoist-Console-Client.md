@@ -44,6 +44,6 @@ I have prepared some config file. So far you can set yor token and emojis there 
 
 Below are some basic commands. Remeber that I'm still developing this project in my free time and you will probably see some difference. The most up-to-date version will be on [github](https://github.com/JakubSzwajka/todoist_console_client) so check out readme file. 
 
-*  **to get tasks** that are/were for today and those overdue use ``` todoist ```
+*  **to get tasks** that are/were for today and those overdue use ``` todoist list```
 *  **to add task**  with default date value as current day, you don't have to use --date flag. In case you want to specify date use YYYY-MM-DD format. ```todoist --add "name of your task" --date yyy-mm-dd```
 * **to complete task** ```todoist --complete id_of_task```

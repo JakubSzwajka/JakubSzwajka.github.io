@@ -21,15 +21,16 @@
     <div class="wrapper-masthead">
       <div class="container">
         <header class="masthead clearfix">
-          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
+          {% comment %} <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a> {% endcomment %}
 
           <div class="site-info">
             <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-            {% comment %} <p class="site-description">{{ site.description }}</p> {% endcomment %}
+            <p class="site-description">{{ site.description }}</p>
           </div>
 
           <nav>
             <a href="{{ site.baseurl }}/">Blog</a>
+            <a href="{{ site.baseurl }}/automate">Automate Snippets</a>
             <a href="{{ site.baseurl }}/about">About</a>
           </nav>
         </header>

@@ -5,7 +5,7 @@ permalink: /about/
 published: true
 ---
 
-Hi, I'm Jakub and I will share some thoughts and ideas here 😉.  
+Hi, I'm Jakub and I will share some of my projects here. Treat this blog as an inside into my dev diary 😉.
 
 ### Contact me
 
