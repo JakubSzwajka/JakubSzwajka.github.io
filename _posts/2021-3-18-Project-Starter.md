@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Project starter!
-published: true
+published: false
 repository: https://github.com/JakubSzwajka/new_project_starter
 status: still in progress
 ---
