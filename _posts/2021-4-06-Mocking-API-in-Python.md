@@ -19,7 +19,7 @@ So let's point the **problem**. First let's assume we want to write test case fo
 
 ### Prepare our api client
 
-As I mentioned, all API clients have common interface, use it! Ladies and gentelmans, the fanciest API client ever below! 
+As I mentioned, all API clients have common interface, use it! Ladies and gentlemen, the fanciest API client ever below! 
 
 ```python 
 class MockedClient(Todo_interface):
@@ -44,15 +44,15 @@ class MockedClient(Todo_interface):
 
 ### Insert it into code 
 
-Here comes the magic you came for. Use decorator *@mock.patch.object( Class_we_are_interested_in, "and_its_method_name")*. It basicly patches the method of class with mock object. 
+Here comes the magic you came for. Use decorator *@mock.patch.object( Class_we_are_interested_in, "and_its_method_name")*. It basically patches the method of class with mock object. 
 
 In simple steps based on example below: 
 1. take ProviderFactory class 
 2. mock the specified method 
 3. pass changed ProviderFactory class to *setUp* method as a *mock_client_factory*
 
-Now it is show time for our *MockedClient*. Specify its instance as a returning value of mocked method and voila!  
-After that, when in *__init__* method of ConcoleClient, *ProviderFactory.getClientHandler('some client name')* will be triggered, it will return out fantastic mock and use it as API handler later. 
+Now it is showtime for our *MockedClient*. Specify its instance as a returning value of mocked method and voila!  
+After that, when in *__init__* method of ConcoleClient, *ProviderFactory.getClientHandler('some client's name')* will be triggered, it will return out fantastic mock and use it as API handler later. 
 
 ```python 
 from unittest import mock, TestCase

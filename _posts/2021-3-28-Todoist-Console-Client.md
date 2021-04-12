@@ -36,14 +36,14 @@ And since then you have all your informations up to date.
 
 ### Config 
 
-I have prepared some config file. So far you can set yor token and emojis there but I hope it will grow a bit. You can set your token by passing it to Json file or I have prepared a command for you 🎀. It will load config, change it and save it again. 
+I have prepared some config file. So far you can set your token and emojis there but I hope it will grow a bit. You can set your token by passing it to json file or I have prepared a command for you 🎀. It will load config, change it and save it again. 
 
 *  **to set the token** use ``` todoist --set-token your_token```
 
 ### Make it work! 
 
-Below are some basic commands. Remeber that I'm still developing this project in my free time and you will probably see some difference. The most up-to-date version will be on [github](https://github.com/JakubSzwajka/todoist_console_client) so check out readme file. 
+Below are some basic commands. Remember that I'm still developing this project in my free time.You will probably see some differences. The most up-to-date version will be on [github](https://github.com/JakubSzwajka/todoist_console_client) so check out readme file. 
 
 *  **to get tasks** that are/were for today and those overdue use ``` todoist list```
-*  **to add task**  with default date value as current day, you don't have to use --date flag. In case you want to specify date use YYYY-MM-DD format. ```todoist --add "name of your task" --date yyy-mm-dd```
+*  **to add task** with default date value as current day, you don't have to use --date flag. In case you want to specify date use YYYY-MM-DD format. ```todoist --add "name of your task" --date yyy-mm-dd```
 * **to complete task** ```todoist --complete id_of_task```
