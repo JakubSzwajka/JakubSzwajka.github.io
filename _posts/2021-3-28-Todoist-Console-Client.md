@@ -7,7 +7,7 @@ published: true
 
 ### Why? 
 
-This time I want to show one of the current projects I'm working on. It's quite simple but very usefull for me. It's console client for [todoist](https://todoist.com/) task managment app. Whole idea comes from one reason. 
+This time I want to show one of the current projects I'm working on. It's quite simple but very usefull for me. It's console client for [todoist](https://todoist.com/) task management app. Whole idea comes from one reason. 
 
 Too many open tabs in browser -> Let's close todoist -> don't look at tasks -> don't do tasks😒. 
 
@@ -32,11 +32,11 @@ I have used todoist [Sync API](https://developer.todoist.com/sync/v8/) with pyth
     client.sync()
 ```
 
-And since then you have all your informations up to date.
+And since then you have all your information up to date.
 
 ### Config 
 
-I have prepared some config file. So far you can set your token and emojis there but I hope it will grow a bit. You can set your token by passing it to json file or I have prepared a command for you 🎀. It will load config, change it and save it again. 
+I have prepared some config file. So far you can set your token and emojis there, but I hope it will grow a bit. You can set your token by passing it to json file, or I have prepared a command for you 🎀. It will load config, change it and save it again. 
 
 *  **to set the token** use ``` todoist --set-token your_token```
 

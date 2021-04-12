@@ -6,7 +6,7 @@ published: true
 
 ### Everything starts with the problem 
 
-And I have already solve this problem! I had to map some git repo folder structure based on github API response, to python dict with structure like: 
+And I have already solved this problem! I had to map some git repo folder structure based on github API response, to python dict with structure like: 
 
 ```json
 {
@@ -36,7 +36,7 @@ And I have already solve this problem! I had to map some git repo folder structu
     }
 }
 ```
-Seems quite simple but what was my api response code (Json below)? It's only some part of structure above. I hope you will get the point. The main difference is type on dict in "tree" list. You can see that *three* is representing some folder and *blob* is some file. First thing is to filter this list, next is to know folder structure for every file (blob here), and we will use a "path" for that 🤷‍♀️. Let's do it simple. `` path_list = file['path'].split('/') `` .  
+Seems quite simple, but what was my API response code (json below)? It's only some part of structure above. I hope you will get the point. The main difference is type on dict in "tree" list. You can see that *three* is representing some folder and *blob* is some file. First thing is to filter this list, next is to know folder structure for every file (blob here), and we will use a "path" for that 🤷‍♀️. Let's do it simple. `` path_list = file['path'].split('/') `` .  
 
 ```json
 {
@@ -71,7 +71,7 @@ Seems quite simple but what was my api response code (Json below)? It's only som
 
 ### Little bit of extra background 
 
-One thing extra before we get to the point. I assumed that folder structure in repo will corespond to structure of studies like: 
+One thing extra before we get to the point. I assumed that folder structure in repo will correspond to structure of studies like: 
 
 ```txt
     semester_1 
@@ -86,11 +86,11 @@ One thing extra before we get to the point. I assumed that folder structure in r
         | - course_3
 
 ```
-So imagine the list of dictionaries with fields like *semester*, *course*, *lab*, *excercise*. Let's make it one dict for backend response 😎
+So imagine the list of dictionaries with fields like *semester*, *course*, *lab*, *exercise*. Let's make it one dict for backend response 😎
 
 ### Old way that worked
 
-Yes, it worked and I had no complaints about it until I got to know another approach!   
+Yes, it worked, and I had no complaints about it until I got to know another approach!   
 
 ```python 
 def group_courses(files):
@@ -116,7 +116,7 @@ def group_courses(files):
 
 ### DEFAULTDICT from Collections
 
-Imagine you don't have to check wheter there is such key as *course* or *lab*. It would be nice🚀! Below example won't raise exception. It will automatically create simple dictionary on level below *defaultdict*. 
+Imagine you don't have to check whether there is such key as *course* or *lab*. It would be nice 🚀! Below example won't raise exception. It will automatically create simple dictionary on level below *defaultdict*. 
 
 ```python 
 from collections import defaultdict 
@@ -130,11 +130,11 @@ file_dict['some_folder_lvl_1']['some_folder_lvl_2']  = {
 
 ```
 
-But what if we want to go deeper. Imagine ``file_dict['some_folder_lvl_1']['some_folder_lvl_2']['some_folder_lvl_3]``, it raises ``KeyError`` becasue *defaultdict* is only on top level of our dictionary. Defaultdict with no argument acts like dict. We could do `` my_dict = defaultdict(defaultdict(defaultdict( 👾 ))) `` but lol, nope. 
+But what if we want to go deeper. Imagine ``file_dict['some_folder_lvl_1']['some_folder_lvl_2']['some_folder_lvl_3]``, it raises ``KeyError`` because *defaultdict* is only on top level of our dictionary. Defaultdict with no argument acts like dict. We could do `` my_dict = defaultdict(defaultdict(defaultdict( 👾 ))) `` but lol, nope. 
 
 Here comes **recursive defaultdict** 😎. Sounds cool enough for me!  
 
-Let's just tell python to create another level of defaultdict, everytime *KeyError* in basic dict would happen. 
+Let's just tell python to create another level of defaultdict, every time *KeyError* in basic dict would happen. 
 
 ```python 
 from collections import defaultdict 
@@ -158,7 +158,7 @@ def group_courses(files):
 
 And you know what? Result is the same but how much less places to make mistake! How much less if statements that I understood only at the time of writing! I like it a lot! 
 
-If you want some fancy details about default check out [docs](https://docs.python.org/3/library/collections.html#collections.defaultdict). Basicly the idea here is to handle ``KeyError`` and supply dict with some default variable. And here it is even recursive!
+If you want some fancy details about default check out [docs](https://docs.python.org/3/library/collections.html#collections.defaultdict). Basically the idea here is to handle ``KeyError`` and supply dict with some default variable. And here it is even recursive!
 
 ****
 
