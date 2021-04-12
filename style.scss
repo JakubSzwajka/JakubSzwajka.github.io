@@ -30,6 +30,10 @@ body {
   width: 100%;
 }
 
+.wrapper-masthead > .container{
+  max-width: 1100px;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: $helveticaNeue;
   color: $darkerGray;
@@ -156,7 +160,8 @@ img {
 
 .masthead {
   padding: 20px 0;
-  border-bottom: 1px solid $lightGray;
+  // border-bottom: 1px solid $lightGray;
+  border-bottom: 2px solid rgb(22, 157, 175);
 
   @include mobile {
     text-align: center;

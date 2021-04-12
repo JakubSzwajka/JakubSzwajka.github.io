@@ -2,11 +2,17 @@
 layout: post
 title: Mocking API in Python 🐍 
 published: true
+excerpt_separator: <!--more-->
 ---
+
+They said that cool guys test their code. So I have tried. You can find here some samples for quick mocking API in your project. I've used it in my [console client for todoist](https://jakubszwajka.github.io/Todoist-Console-Client/).  
+
+<!--more-->
 
 ### Quick background 
 
 The CUT (*class under test* - ConsoleClient here) is responsible for handling all logic of my app. It has it's own object to handle communication with API (todoist here). 
+
 
 It works like this:
 1. Tell the ConsoleClient that we want to work with our tasks from todoist.

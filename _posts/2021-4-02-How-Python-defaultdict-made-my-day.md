@@ -2,11 +2,16 @@
 layout: post
 title: How Python defaultdict made my day  
 published: true
+excerpt_separator: <!--more-->
 ---
+
+Mission for today: Kill nasty if statements that you don't want to care about!
+
+<!--more-->
 
 ### Everything starts with the problem 
 
-And I have already solved this problem! I had to map some git repo folder structure based on github API response, to python dict with structure like: 
+And I have already solved this problem! I had to map some git repo folder structure based on GitHub API response, to python dict with structure like: 
 
 ```json
 {
@@ -36,7 +41,7 @@ And I have already solved this problem! I had to map some git repo folder struct
     }
 }
 ```
-Seems quite simple, but what was my API response code (json below)? It's only some part of structure above. I hope you will get the point. The main difference is type on dict in "tree" list. You can see that *three* is representing some folder and *blob* is some file. First thing is to filter this list, next is to know folder structure for every file (blob here), and we will use a "path" for that 🤷‍♀️. Let's do it simple. `` path_list = file['path'].split('/') `` .  
+Seems quite simple, but what was my API response code (JSON below)? It's only some part of structure above. I hope you will get the point. The main difference is type on dict in “tree” list. You can see that *three* is representing some folder and *blob* is some file. First thing is to filter this list, next is to know folder structure for every file (blob here), and we will use a “path” for that 🤷‍♀️. Let's do it simple. `` path_list = file['path'].split('/') ``.  
 
 ```json
 {
@@ -69,7 +74,7 @@ Seems quite simple, but what was my API response code (json below)? It's only so
 
 ```
 
-### Little bit of extra background 
+### A bit of extra background 
 
 One thing extra before we get to the point. I assumed that folder structure in repo will correspond to structure of studies like: 
 
@@ -156,9 +161,9 @@ def group_courses(files):
     return result
 ```
 
-And you know what? Result is the same but how much less places to make mistake! How much less if statements that I understood only at the time of writing! I like it a lot! 
+And you know what? Result is the same but how much fewer places to make mistake! How much less if statements that I understood only at the time of writing! I like it a lot! 
 
-If you want some fancy details about default check out [docs](https://docs.python.org/3/library/collections.html#collections.defaultdict). Basically the idea here is to handle ``KeyError`` and supply dict with some default variable. And here it is even recursive!
+If you want some fancy details about defaultdict, check out [docs](https://docs.python.org/3/library/collections.html#collections.defaultdict). Basically the idea here is to handle ``KeyError`` and supply dict with some default variable. And here it is even recursive!
 
 ****
 

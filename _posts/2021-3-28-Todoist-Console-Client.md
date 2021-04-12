@@ -2,12 +2,16 @@
 layout: post
 title: Todoist Console Client - the beginig 
 published: true
+excerpt_separator: <!--more-->
 ---
 
+Should every dev blog has some “open source project that I'm currently working on in my free time”?? Probably not but I will show you mine. Just in case it should... 😉
+
+<!--more-->
 
 ### Why? 
 
-This time I want to show one of the current projects I'm working on. It's quite simple but very usefull for me. It's console client for [todoist](https://todoist.com/) task management app. Whole idea comes from one reason. 
+It's console client for [todoist](https://todoist.com/) task management app. Whole idea comes from one reason. 
 
 Too many open tabs in browser -> Let's close todoist -> don't look at tasks -> don't do tasks😒. 
 
