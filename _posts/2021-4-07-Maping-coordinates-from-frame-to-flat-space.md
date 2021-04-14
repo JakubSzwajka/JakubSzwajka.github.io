@@ -42,28 +42,32 @@ So now we have our input. In my project I've made something like camera settings
 
 Finally, let's do something! You need two methods. 
 
-`` cv2.getPerspectiveTransform( here_goes_list_of_src_points, here_goes_list_of_dst_points )``
+```python 
+cv2.getPerspectiveTransform( here_goes_list_of_src_points, here_goes_list_of_dst_points )
+```
 
 This will return calculated homography between two flat spaces we were talking about earlier.  
 
-`` cv2.perspectiveTransform( points_we_want_to_map, our_homography )``
+```python
+cv2.perspectiveTransform( points_we_want_to_map, our_homography )
+```
 
 This will map other points. 
 
-```Python 
-    import numpy as np
+```python 
+import numpy as np
 
-    pts_src = np.float32(cameraConfig['src'])
-    pts_dst = np.float32(cameraConfig['dst'])
+pts_src = np.float32(cameraConfig['src'])
+pts_dst = np.float32(cameraConfig['dst'])
 
-    homography = cv2.getPerspectiveTransform(pts_src, pts_dst)
+homography = cv2.getPerspectiveTransform(pts_src, pts_dst)
 ```
 
 Such calculated homography is enough for us to tell where we are standing in backyard. Let's just pass where we are on the picture (here you can use some object detection or other fancy stuff) and homography. 
 
 ```python
-    coords_to_map = np.float32([[ x_coord, y_coord ]]).reshape(-1,1,2)
-    mapped_coords = cv2.perspectiveTransform( coords_to_map, homography )
+coords_to_map = np.float32([[ x_coord, y_coord ]]).reshape(-1,1,2)
+mapped_coords = cv2.perspectiveTransform( coords_to_map, homography )
 ```
 
 Basicaly that's it. Now go and build neighbor tracker around your house 😉.  
