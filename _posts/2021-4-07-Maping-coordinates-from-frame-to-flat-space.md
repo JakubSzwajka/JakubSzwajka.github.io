@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Maping coordinates from video frame to technical projection 🤓
-published: false
+published: true
 excerpt_separator: <!--more-->
 ---
 
@@ -14,13 +14,13 @@ Many google search results led me here. Hope one of yours will lead you here and
 
 This is me in one of the frames in video (left picture). Assume that camera position in stable, something like surveillance camera. Our goal is to make system witch will tell us where we are in flat space on something like technical projection (right picture). And as always we will use Python. 
 
-![homography_idea](https://github.com/JakubSzwajka/JakubSzwajka.github.io/blob/master/_posts/_images/homography_1.png?raw=true) 
+![Homography_idea](https://github.com/JakubSzwajka/JakubSzwajka.github.io/blob/master/_posts/_images/homography_1.png?raw=true) 
 
 ### Just use homography 🤷‍♀️
 
 As I said, I tried lots of different approaches which didn't work for me and then in some [YT](https://www.youtube.com/watch?v=fVJeJMWZcq8) lecture, I found ⭐homography⭐.
 
-I will try to explain it to you in very simple words. I mention our problem is to find corelation between two flat spaces. Basicaly the screen and technical projection on space. That corelation is called homography 🤯. 
+I will try to explain it to you in very simple words. I mention our problem is to find corelation between two flat spaces. Basicaly the screen and technical projection of space which camera covers. That corelation between them is called homography 🤯. 
 
 If you are searching for detailed stuff go to [wiki page](https://en.wikipedia.org/wiki/Homography_(computer_vision)), I will cover using it with python in my case. 
 
@@ -28,7 +28,7 @@ If you are searching for detailed stuff go to [wiki page](https://en.wikipedia.o
 
 Choose four points on your video, if you have more than four it is even better. Now you need to measure where in 2d space of technical projection those points are. Yes, I see it as a disadvantage of this solution too... you have to be able to be where your camera is pointing to. Another way is to assume more or less distances between those points.
 
-So now we have our input. In my project I've made something like camera settings. For each camera there is a JSON file with input values to calculate homography.  
+So now we have our input. In my project I've made something like camera settings. For each camera there is a JSON file with input values to calculate homography. Src list is list of x and y coordinates on our video. You can use pixels to know it. Dst list is list of points corresponding to src in real space. For example assume that low left corner of your backyard is point (0,0) and measure all other points.
 
 ```json
 {
@@ -57,10 +57,13 @@ This will map other points.
     pts_dst = np.float32(cameraConfig['dst'])
 
     homography = cv2.getPerspectiveTransform(pts_src, pts_dst)
+```
 
-    coords_to_map = np.float32([[ frame['x'], frame['y'] ]]).reshape(-1,1,2)
+Such calculated homography is enough for us to tell where we are standing in backyard. Let's just pass where we are on the picture (here you can use some object detection or other fancy stuff) and homography. 
+
+```python
+    coords_to_map = np.float32([[ x_coord, y_coord ]]).reshape(-1,1,2)
     mapped_coords = cv2.perspectiveTransform( coords_to_map, homography )
-
 ```
 
 Basicaly that's it. Now go and build neighbor tracker around your house 😉.  
