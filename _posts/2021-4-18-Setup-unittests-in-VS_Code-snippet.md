@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Muscle-memmory-and-TDD-in-VS-Code
+title: Muscle memmory and TDD in VS Code
 published: true
 excerpt_separator: <!--more-->
 ---
