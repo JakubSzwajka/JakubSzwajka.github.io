@@ -7,7 +7,7 @@ excerpt_separator: <!--more-->
 
 This is kind of post that I'm still thinking why I did that 🤔. But remember that not every line of code should be serious. Keep it fun! 🎙
 
-
+Let's make [Rick Astley sing "Never Gonna Give You Up"](https://www.youtube.com/watch?v=dQw4w9WgXcQ) in console. 
 <!--more-->
 
 ### Step first — Video 
@@ -48,7 +48,7 @@ cv2.destroyAllWindows()
 
 Ok now we have our core. We play video, but there is no sound, it is playing to fast and our goal is to have it in console. 
 
-Let's solve the problem one by one. 
+Let's solve those problems one by one. 
 
 ### Sound
 
@@ -131,11 +131,13 @@ Method for mapping number to char will be:
 
 def grayScaleNumber(num):
     scale_size = len(GRAY_SCALE)
-    index = (int((num / 255) * scale_size) - 1)
+    index = int((num / 255) * scale_size)
     return GRAY_SCALE[index]
 
 ```
-Let's add simple print method instead of ``cv2.imshow("video",frame)``. One more thing here is to resize the video. OpenCV can handle it for us.
+Let's add simple print method instead of ``cv2.imshow("video",frame)``.
+
+One more thing here is to resize the video. OpenCV can handle it for us.
 
 ```python
 def printFrameInConsole(frame, height, width):
@@ -155,7 +157,7 @@ def printFrameInConsole(frame, height, width):
 
 Remember to play with it a bit. Check out some different thresholds and threshold types. Find the best Rick Astley for yourself. 
 
-I will upload some video as soon as I can. Now admire console Rick 😅
+I will upload some video as soon as I can. Now admire console [Rick](https://www.youtube.com/watch?v=dQw4w9WgXcQ) 😅
 
 ![Rick_astley](https://github.com/JakubSzwajka/JakubSzwajka.github.io/blob/master/_posts/_images/Rick_Astley_1.png?raw=true)
 
