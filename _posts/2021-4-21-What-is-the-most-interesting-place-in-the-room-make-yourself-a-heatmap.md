@@ -1,7 +1,7 @@
 ---
 layout: post
 title: What is the most interesting place in the room. Make yourself a heatmap.
-published: false
+published: true
 excerpt_separator: <!--more-->
 ---
 
