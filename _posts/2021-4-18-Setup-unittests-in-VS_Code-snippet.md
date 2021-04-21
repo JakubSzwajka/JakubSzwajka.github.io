@@ -5,7 +5,7 @@ published: true
 excerpt_separator: <!--more-->
 ---
 
-In my recent work I found that if I don't set up everything for triggering unit tests quickly, there is no chance for any TDD. This post is snippet for future me, how to set up everything in VS Code. 
+In my recent work I found that if I don't set everything up for triggering unit tests quickly, there is no chance for any TDD. This post is a snippet for future me, how to set everything up in VS Code. 
 
 <!--more-->
 
@@ -29,9 +29,9 @@ To install extension: type “Coverage Gutters” in VS Code extension panel.  I
 ![Coverage_gutters_extension](https://github.com/JakubSzwajka/JakubSzwajka.github.io/blob/master/_posts/_images/setup_unit_tests_1.png?raw=true)
 
 
-### We want them to work quick
+### We want them to work quickly
 
-Whole point is to that if you start coding, there will always be something more important to do or check than setup first unit test. Let's do it as first and foremost thing. After that, find shortcuts that you like. I will show you how to set up them. 
+The Whole point is that if you start coding, there will always be something more important to do or check than setup first unit test. Let's do it as first and foremost thing. After that, find shortcuts that you like. I will show you how to set up them. 
 
 ### Add dummy test 
 
@@ -81,19 +81,19 @@ test\test_main_funcionality.py .                                     [100%]
 ============================ 1 passed in 0.26s ============================
 ```
 
-But I still want to it work faster. I think the best way to remember that we should run tests and write them is to use muscle memory! Just use shortcut. I set it to ``Alt+t``. If you have Python extension go to Keyboard Shortcuts settings (F1 + type 'keyboard shortcuts') and then type 'Run tests'. You should find a 'Python: Run All Tests'. Set it to whatever shortcut you want. 
+But I still want it to work faster. I think the best way to remember that we should run tests and write them is to use muscle memory! Just use shortcut. I set it to ``Alt+t``. If you have Python extension go to Keyboard Shortcuts settings (F1 + type 'keyboard shortcuts') and then type 'Run tests'. You should find a 'Python: Run All Tests'. Set it to whatever shortcut you want. 
 
 Now press your shortcut. When run for the first time you should see something like this.
 
 ![coverage_gutters_extension](https://github.com/JakubSzwajka/JakubSzwajka.github.io/blob/master/_posts/_images/setup_unit_tests_2.png?raw=true)
 
-Follow the steps to configure it for workspace. I choosed pytest and test folder which contains my tests. 
+Follow the steps to configure it for workspace. I chose pytest and test folder which contains my tests. 
 
 Run it again and check if no errors occur. 
 
 ### ERROR 
 
-Here is the place where I bump into problem. I had error message telling me that ``src.main_module.MagicModule`` cannot be imported in ``test_main_funcionality.py`` file. WTF? It worked 3 minutes ago. 
+Here is the place where I bumped into a problem. I had error message telling me that ``src.main_module.MagicModule`` cannot be imported in ``test_main_funcionality.py`` file. WTF? It worked 3 minutes ago. 
 
 Found solution [here](https://stackoverflow.com/questions/41748464/pytest-cannot-import-module-while-python-can). Just add ``__init__.py`` file to test directory. 
 

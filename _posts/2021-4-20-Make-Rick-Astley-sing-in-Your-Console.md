@@ -12,7 +12,7 @@ Let's make [Rick Astley sing "Never Gonna Give You Up"](https://www.youtube.com/
 
 ### Step first — Video 
 
-I assume that you already have some .mp4 file. If not, you can use ``pytube``. Check out this snippet: 
+I assume that you already have some .mp4 file. If not, you can use ``pytube``. Check out a snippet: 
 
 ```python
 import pytube
