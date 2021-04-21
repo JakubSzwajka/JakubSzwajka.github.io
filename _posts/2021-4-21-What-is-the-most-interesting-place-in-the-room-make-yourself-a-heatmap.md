@@ -1,13 +1,13 @@
 ---
 layout: post
-title: What is the most interesting place in the backyard. Make yourself a heatmap 🐕‍🦺
+title: What is the most interesting place in the backyard? Make yourself a heatmap 🐕‍🦺
 published: true
 excerpt_separator: <!--more-->
 ---
 
 ### Data 
 
-Obviously if we talk about heatmaps, we talk about displaying some data. Today it is about displaying heatmap on some image. In this case it will be dog position in the garden. You can read how to obtain such [here](https://jakubszwajka.github.io/Maping-coordinates-from-frame-to-flat-space/). Connect the dots, and you will have some cool system in your garden 😎.
+Obviously if we talk about heatmaps, we talk about displaying some data. Today it is about displaying heatmap on an image. In this case it will be dog position in the garden. You can read how to obtain such position [here](https://jakubszwajka.github.io/Maping-coordinates-from-frame-to-flat-space/). Connect the dots, and you will have some cool system in your garden 😎.
 
 <!--more-->
 
@@ -22,7 +22,7 @@ data = np.random.randint(0,20,(100,2))
 
 ### Image to put heatmap on it 
 
-Here I will use my talent a bit 😎. Hope you see garden here. 
+Now I will use my talent a bit 😎. Hope you can see a garden here. 
 
 ![garden](https://github.com/JakubSzwajka/JakubSzwajka.github.io/blob/master/_posts/_images/garden.png?raw=true)
 
@@ -55,7 +55,7 @@ cv2.destroyAllWindows()
 
 ![garden](https://github.com/JakubSzwajka/JakubSzwajka.github.io/blob/master/_posts/_images/garden_2.png?raw=true)
 
-Hmm. There is some data but hard to analyze it. Let's dig deeper.
+Hmm. There is some data, but it's hard to analyze it. Let's dig deeper.
 
 Let's make second image, blank one. We will put our data on it, manipulate a bit and then overlay on target image. 
 
@@ -98,6 +98,6 @@ fin_img = cv2.addWeighted(heatmap_image, 0.5, map_img, 0.5, 0)
 
 ![Garden](https://github.com/JakubSzwajka/JakubSzwajka.github.io/blob/master/_posts/_images/garden_4.png?raw=true)
 
-Now we see some data! We can assume where our dog spends most of the time. 👍
+We can see the data now! We can assume where our dog spends most of the time. 👍
 
 Try to connect this with this [post](https://jakubszwajka.github.io/Maping-coordinates-from-frame-to-flat-space/), and you can make quite interesting camera system 🤔.  You can try changing values in ``distanceTransform( )`` too. For example try different [distance types](https://docs.opencv.org/3.4/d7/d1b/group__imgproc__misc.html#gaa2bfbebbc5c320526897996aafa1d8eb). They will change your heatmap a bit. 
