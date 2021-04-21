@@ -1,6 +1,6 @@
 ---
 layout: post
-title: What is the most interesting place in the room. Make yourself a heatmap.
+title: What is the most interesting place in the backyard. Make yourself a heatmap 🐕‍🦺
 published: true
 excerpt_separator: <!--more-->
 ---
