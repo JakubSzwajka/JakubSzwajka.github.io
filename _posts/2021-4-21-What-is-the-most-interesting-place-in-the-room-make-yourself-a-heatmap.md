@@ -7,9 +7,11 @@ excerpt_separator: <!--more-->
 
 ### Data 
 
-Obviously if we talk about heatmaps, we talk about displaying some data. Today it is about displaying heatmap on some image. In this case it will be dog position in the garden. You can read how to obtain such [here](). Connect the dots, and you will have some cool system in your garden 😎.
+Obviously if we talk about heatmaps, we talk about displaying some data. Today it is about displaying heatmap on some image. In this case it will be dog position in the garden. You can read how to obtain such [here](https://jakubszwajka.github.io/Maping-coordinates-from-frame-to-flat-space/). Connect the dots, and you will have some cool system in your garden 😎.
 
-First, I have to admit that I don't have a dog. Data will be random X and Y positions. 
+<!--more-->
+
+First, I have to admit that I don't have a dog. Data will be generated randomly X and Y positions. 
 
 ```python 
 import numpy as np
@@ -98,4 +100,4 @@ fin_img = cv2.addWeighted(heatmap_image, 0.5, map_img, 0.5, 0)
 
 Now we see some data! We can assume where our dog spends most of the time. 👍
 
-Try to connect this with this [post](https://jakubszwajka.github.io/Maping-coordinates-from-frame-to-flat-space/), and you can make quite interesting camera system 🤔.  
+Try to connect this with this [post](https://jakubszwajka.github.io/Maping-coordinates-from-frame-to-flat-space/), and you can make quite interesting camera system 🤔.  You can try changing values in ``distanceTransform( )`` too. For example try different [distance types](https://docs.opencv.org/3.4/d7/d1b/group__imgproc__misc.html#gaa2bfbebbc5c320526897996aafa1d8eb). They will change your heatmap a bit. 
