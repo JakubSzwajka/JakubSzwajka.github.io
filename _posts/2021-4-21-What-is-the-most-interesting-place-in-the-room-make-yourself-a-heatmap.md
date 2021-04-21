@@ -62,11 +62,23 @@ Blank image is quite easy in OpenCV. Just matrix with zeros.
 ```python
 heatmap_image = np.zeros((height,width,1), np.uint8) 
 ```
-Putting data on it is the same as above. Use ```cv2.circle(...)```.
+Putting data on it is the same as above. Use ```cv2.circle(...)```. You should be able to display such dots.
+
+![garden](https://github.com/JakubSzwajka/JakubSzwajka.github.io/blob/master/_posts/_images/garden_3.png?raw=true)
+
+### Manipulate them
+
+Use ``cv2.distanceTransform()`` for all pixels. It changes pixels value based on distance to the nearest pixel with value 0. So if there is a lot of points in one place, value will be higher.  
+
 
 ```python
 heatmap_image = cv2.distanceTransform(heatmap_image, cv2.DIST_L2, 5)
+```
+![garden](https://github.com/JakubSzwajka/JakubSzwajka.github.io/blob/master/_posts/_images/garden_5.png?raw=true)
 
+Quite good! Now let's add some color. To make in more readable, in this example I'm multiplying every pixel by 2.5. Change this value and see what happens. 😉 
+
+```python
 # here I make those points a bit bigger
 heatmap_image = heatmap_image * 2.5
 heatmap_image = np.uint8(heatmap_image)
@@ -82,4 +94,8 @@ Final step. Overlay those two images.
 fin_img = cv2.addWeighted(heatmap_image, 0.5, map_img, 0.5, 0)
 ```
 
-![garden](https://github.com/JakubSzwajka/JakubSzwajka.github.io/blob/master/_posts/_images/garden_4.png?raw=true)
+![Garden](https://github.com/JakubSzwajka/JakubSzwajka.github.io/blob/master/_posts/_images/garden_4.png?raw=true)
+
+Now we see some data! We can assume where our dog spends most of the time. 👍
+
+Try to connect this with this [post](https://jakubszwajka.github.io/Maping-coordinates-from-frame-to-flat-space/), and you can make quite interesting camera system 🤔.  
