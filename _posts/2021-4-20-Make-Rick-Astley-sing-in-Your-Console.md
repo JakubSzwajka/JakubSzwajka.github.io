@@ -162,12 +162,4 @@ I will upload some video as soon as I can. Now admire console [Rick](https://www
 ![Rick_astley](https://github.com/JakubSzwajka/JakubSzwajka.github.io/blob/master/_posts/_images/Rick_Astley_1.png?raw=true)
 
 
-
-
-
-
-
-
-
-
-
+Inspired by [PLED](https://www.reddit.com/r/programming/comments/mt9lmv/i_played_rick_astley_never_give_you_up_in_console/).  
