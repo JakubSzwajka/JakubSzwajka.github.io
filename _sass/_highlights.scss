@@ -27,6 +27,12 @@ code {
   // color: #D4D4D4;
 }
 
+.language-plaintext {
+  font-weight: bold;
+  background-color: lightgray;
+  letter-spacing: 2px;
+}
+
 .highlight .c { color: #586E75 } /* Comment */
 .highlight .err { color: #93A1A1 } /* Error */
 .highlight .g { color: #93A1A1 } /* Generic */
