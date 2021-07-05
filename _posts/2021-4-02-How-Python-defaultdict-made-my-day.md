@@ -1,7 +1,8 @@
 ---
 layout: post
-title: How Python defaultdict made my day  
+title: How Python defaultdict made my day
 published: true
+comments: true
 excerpt_separator: <!--more-->
 ---
 
@@ -9,98 +10,99 @@ Mission for today: Kill nasty if statements that you don't want to care about!
 
 <!--more-->
 
-### Everything starts with the problem 
+### Everything starts with the problem
 
-And I have already solved this problem! I had to map some git repo folder structure based on GitHub API response, to python dict with structure like: 
+And I have already solved this problem! I had to map some git repo folder structure based on GitHub API response, to python dict with structure like:
 
 ```json
 {
-    "folder_1_lvl_1" : {
-        "folder_1_lvl_2" : {
-            "file_1" : "some_file_name_1",
-            "file_2" : "some_file_name_2",
-            "file_3" : "some_file_name_3"
-        },
-        "folder_2_lvl_2" : {
-            "file_1" : "some_file_name_1",
-            "file_2" : "some_file_name_2",
-            "file_3" : "some_file_name_3"
-        }
+  "folder_1_lvl_1": {
+    "folder_1_lvl_2": {
+      "file_1": "some_file_name_1",
+      "file_2": "some_file_name_2",
+      "file_3": "some_file_name_3"
     },
-    "folder_2_lvl_1" : {
-        "folder_1_lvl_2" : {
-            "file_1" : "some_file_name_1",
-            "file_2" : "some_file_name_2",
-            "file_3" : "some_file_name_3"
-        },
-        "folder_2_lvl_2" : {
-            "file_1" : "some_file_name_1",
-            "file_2" : "some_file_name_2",
-            "file_3" : "some_file_name_3"
-        }
+    "folder_2_lvl_2": {
+      "file_1": "some_file_name_1",
+      "file_2": "some_file_name_2",
+      "file_3": "some_file_name_3"
     }
+  },
+  "folder_2_lvl_1": {
+    "folder_1_lvl_2": {
+      "file_1": "some_file_name_1",
+      "file_2": "some_file_name_2",
+      "file_3": "some_file_name_3"
+    },
+    "folder_2_lvl_2": {
+      "file_1": "some_file_name_1",
+      "file_2": "some_file_name_2",
+      "file_3": "some_file_name_3"
+    }
+  }
 }
 ```
-Seems quite simple, but what was my API response code (JSON below)? It's only some part of structure above. I hope you will get the point. The main difference is type on dict in “tree” list. You can see that *three* is representing some folder and *blob* is some file. First thing is to filter this list, next is to know folder structure for every file (blob here), and we will use a “path” for that 🤷‍♀️. Let's do it simple. `` path_list = file['path'].split('/') ``.  
+
+Seems quite simple, but what was my API response code (JSON below)? It's only some part of structure above. I hope you will get the point. The main difference is type on dict in “tree” list. You can see that _three_ is representing some folder and _blob_ is some file. First thing is to filter this list, next is to know folder structure for every file (blob here), and we will use a “path” for that 🤷‍♀️. Let's do it simple. `path_list = file['path'].split('/')`.
 
 ```json
 {
-    "sha": "some_sha",
-    "url": "some_url",
-    "tree": [
-        {
-            "path": "folder_1_lvl_1",
-            "mode": "040000",
-            "type": "tree",
-            "sha": "another sha",
-            "url": "another url"
-        },
-        {
-            "path": "folder_1_lvl_1/folder_1_lvl_2",
-            "mode": "040000",
-            "type": "tree",
-            "sha": "sha",
-            "url": "url"
-        },
-        {
-            "path": "folder_1_lvl_1/folder_1_lvl_2/file_1",
-            "mode": "040000",
-            "type": "blob",
-            "sha": "sha",
-            "url": "url"
-        },
-    ]
+  "sha": "some_sha",
+  "url": "some_url",
+  "tree": [
+    {
+      "path": "folder_1_lvl_1",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "another sha",
+      "url": "another url"
+    },
+    {
+      "path": "folder_1_lvl_1/folder_1_lvl_2",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "sha",
+      "url": "url"
+    },
+    {
+      "path": "folder_1_lvl_1/folder_1_lvl_2/file_1",
+      "mode": "040000",
+      "type": "blob",
+      "sha": "sha",
+      "url": "url"
+    }
+  ]
 }
-
 ```
 
-### A bit of extra background 
+### A bit of extra background
 
-One thing extra before we get to the point. I assumed that folder structure in repo will correspond to structure of studies like: 
+One thing extra before we get to the point. I assumed that folder structure in repo will correspond to structure of studies like:
 
 ```txt
-    semester_1 
+    semester_1
         | - course_1
                 | - lab_1
                       | - excercise_1    <- it is file already
-                      | - excercise_2    
-                      | - excercise_3    
+                      | - excercise_2
+                      | - excercise_3
                 | - lab_2
                 | - lab_3
         | - course_2
         | - course_3
 
 ```
-So imagine the list of dictionaries with fields like *semester*, *course*, *lab*, *exercise*. Let's make it one dict for backend response 😎
+
+So imagine the list of dictionaries with fields like _semester_, _course_, _lab_, _exercise_. Let's make it one dict for backend response 😎
 
 ### Old way that worked
 
-Yes, it worked, and I had no complaints about it until I got to know another approach!   
+Yes, it worked, and I had no complaints about it until I got to know another approach!
 
-```python 
+```python
 def group_courses(files):
     result = {}
-    
+
     for file in files:
         if file["course"] not in result.keys():
             result[file["course"]] = {}
@@ -121,10 +123,10 @@ def group_courses(files):
 
 ### DEFAULTDICT from Collections
 
-Imagine you don't have to check whether there is such key as *course* or *lab*. It would be nice 🚀! Below example won't raise exception. It will automatically create simple dictionary on level below *defaultdict*. 
+Imagine you don't have to check whether there is such key as _course_ or _lab_. It would be nice 🚀! Below example won't raise exception. It will automatically create simple dictionary on level below _defaultdict_.
 
-```python 
-from collections import defaultdict 
+```python
+from collections import defaultdict
 
 file_dict = defaultdict(dict)
 
@@ -135,14 +137,14 @@ file_dict['some_folder_lvl_1']['some_folder_lvl_2']  = {
 
 ```
 
-But what if we want to go deeper. Imagine ``file_dict['some_folder_lvl_1']['some_folder_lvl_2']['some_folder_lvl_3]``, it raises ``KeyError`` because *defaultdict* is only on top level of our dictionary. Defaultdict with no argument acts like dict. We could do `` my_dict = defaultdict(defaultdict(defaultdict( 👾 ))) `` but lol, nope. 
+But what if we want to go deeper. Imagine `file_dict['some_folder_lvl_1']['some_folder_lvl_2']['some_folder_lvl_3]`, it raises `KeyError` because _defaultdict_ is only on top level of our dictionary. Defaultdict with no argument acts like dict. We could do `my_dict = defaultdict(defaultdict(defaultdict( 👾 )))` but lol, nope.
 
-Here comes **recursive defaultdict** 😎. Sounds cool enough for me!  
+Here comes **recursive defaultdict** 😎. Sounds cool enough for me!
 
-Let's just tell python to create another level of defaultdict, every time *KeyError* in basic dict would happen. 
+Let's just tell python to create another level of defaultdict, every time _KeyError_ in basic dict would happen.
 
-```python 
-from collections import defaultdict 
+```python
+from collections import defaultdict
 
 def nested_dict():
     return defaultdict(nested_dict)
@@ -150,7 +152,7 @@ def nested_dict():
 # and above function wolud look like this now!
 def group_courses(files):
     result = nested_dict()
-    
+
     for file in files:
         result[file["course"]][file["lab"]][file["excercise"]] = {
             "file" : file["excercise"],
@@ -161,10 +163,10 @@ def group_courses(files):
     return result
 ```
 
-And you know what? Result is the same but how much fewer places to make mistake! How much less if statements that I understood only at the time of writing! I like it a lot! 
+And you know what? Result is the same but how much fewer places to make mistake! How much less if statements that I understood only at the time of writing! I like it a lot!
 
-If you want some fancy details about defaultdict, check out [docs](https://docs.python.org/3/library/collections.html#collections.defaultdict). Basically the idea here is to handle ``KeyError`` and supply dict with some default variable. And here it is even recursive!
+If you want some fancy details about defaultdict, check out [docs](https://docs.python.org/3/library/collections.html#collections.defaultdict). Basically the idea here is to handle `KeyError` and supply dict with some default variable. And here it is even recursive!
 
-****
+---
 
-Main credits for [Duncaster](https://patternite.com/users/d5a991ecf2/duncster) from Patternite as I found this idea in his [article](https://patternite.com/patterns/4ec8658c96/automatically-create-nested-dictionaries-python) first.  
+Main credits for [Duncaster](https://patternite.com/users/d5a991ecf2/duncster) from Patternite as I found this idea in his [article](https://patternite.com/patterns/4ec8658c96/automatically-create-nested-dictionaries-python) first.
