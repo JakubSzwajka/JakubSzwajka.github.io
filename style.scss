@@ -19,7 +19,8 @@ html {
 
 body {
   background: $white;
-  font: 18px/1.4 $helvetica;
+  font: 18px/1.4 $Calendas;
+  // font: 18px/1.4 $helvetica;
   color: $darkGray;
 }
 
@@ -40,7 +41,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $helveticaNeue;
+  // font-family: $helveticaNeue;
   color: $darkerGray;
   font-weight: bold;
 
@@ -212,7 +213,9 @@ img {
   margin: 0;
   color: $darkGray;
   cursor: pointer;
-  font-family: $helveticaNeue;
+  // font-family: $helveticaNeue;
+  font-family: $Calendas;
+
   font-weight: 300;
   font-size: 28px;
   letter-spacing: 1px;
@@ -231,7 +234,8 @@ img {
 nav {
   float: right;
   margin-top: 23px; // @TODO: Vertically middle align
-  font-family: $helveticaNeue;
+  // font-family: $helveticaNeue;
+  font-family: $Calendas;
   font-size: 18px;
 
   @include mobile {
@@ -305,6 +309,32 @@ footer {
   margin-top: 100px;
 }
 
+.post-date {
+  color: rgb(116, 116, 116);
+}
+
+.pagination {
+  width: 100%;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.email-box-message {
+  font-family: $Calendas;
+}
+
+.contact-me {
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+.contact-me-email {
+  font-weight: bold;
+}
+.privacy-policy {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";

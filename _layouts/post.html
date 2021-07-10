@@ -9,7 +9,7 @@ layout: default
 
   <div class="date">Written on {{ page.date | date: "%B %e, %Y" }}</div>
 
-  {% if page.comments %}
+  {% include subscribe_email.html %} {% if page.comments %}
 
   <div id="disqus_thread"></div>
   <script>
@@ -39,5 +39,3 @@ layout: default
   >
   {% endif %}
 </article>
-
-{% comment %} {% include subscribe_email.html %} {% endcomment %}
