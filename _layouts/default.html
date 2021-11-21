@@ -29,44 +29,62 @@
   </head>
 
   <body>
-    <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead clearfix">
-          {% comment %}
-          <a href="{{ site.baseurl }}/" class="site-avatar"
-            ><img src="{{ site.avatar }}"
-          /></a>
-          {% endcomment %}
-
-          <div class="site-info">
-            <h1 class="site-name">
-              <a href="{{ site.baseurl }}/">{{ site.name }}</a>
-            </h1>
-            {% comment %}
-            <p class="site-description">{{ site.description }}</p>
-            {% endcomment %}
-          </div>
-
-          <nav>
-            <a href="{{ site.baseurl }}/">Blog</a>
-            <a href="{{ site.baseurl }}/about">About</a>
-          </nav>
-        </header>
+    <div class="side-bar-navigation-wrapper">
+      <div class="side-bar-navigation">
+        {% comment %} <h2>{{ site.data.sidebarList.docs_list_title }}</h2> {% endcomment %}
+        {% comment %} <h2 class="side-menu-list-title">Menu</h2> {% endcomment %}
+        <nav>
+          <ul>
+            {% for item in site.data.sidebarList.docs %}
+                <li class="side-menu-list-item"><a href="{{ item.url }}">{{ item.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>
       </div>
     </div>
 
-    <div id="main" role="main" class="container">{{ content }}</div>
+    <div class="blog-body">
+      <div class="wrapper-masthead">
+        <div class="container">
+          <header class="masthead clearfix">
+            {% comment %}
+            <a href="{{ site.baseurl }}/" class="site-avatar"
+              ><img src="{{ site.avatar }}"
+            /></a>
+            {% endcomment %}
 
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">{% include svg-icons.html %}</footer>
+            <div class="site-info">
+              <h1 class="site-name">
+                <a href="{{ site.baseurl }}/">{{ site.name }}</a>
+              </h1>
+              {% comment %}
+              <p class="site-description">{{ site.description }}</p>
+              {% endcomment %}
+            </div>
 
-        <div>
-          <a class="privacy-policy" href="{{ site.baseurl }}/policy"
-            ><p>Privacy Policy</p></a
-          >
+            <nav>
+              {% comment %} <a href="{{ site.baseurl }}/">Blog</a>
+              <a href="{{ site.baseurl }}/about">About</a> {% endcomment %}
+            </nav>
+          </header>
         </div>
       </div>
+      <div id="main" role="main" class="container">{{ content }}</div>
+
+      <div class="wrapper-footer">
+        <div class="container">
+          <footer class="footer">{% include svg-icons.html %}</footer>
+
+          <div>
+            <a class="privacy-policy" href="{{ site.baseurl }}/policy"
+              ><p>Privacy Policy</p></a
+            >
+            
+            <p style="font-weight:bold">feel free to contact me: szwajkajakub@gmail.com</p>
+          </div>
+        </div>
+      </div>    
     </div>
+
   </body>
 </html>

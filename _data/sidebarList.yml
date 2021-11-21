@@ -1,0 +1,15 @@
+docs_list_title: ACME Documentation
+docs:
+
+- title: 🤨 Why you are here?
+  url: /pages/ideas
+
+- title: 📄 Posts
+  key: POSTS
+  url: /pages/blog-posts
+
+- title: 🔄 Process 
+  url: /pages/process
+
+- title: 📖 About
+  url: /pages/about
