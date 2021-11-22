@@ -29,20 +29,6 @@
   </head>
 
   <body>
-    <div class="side-bar-navigation-wrapper">
-      <div class="side-bar-navigation">
-        {% comment %} <h2>{{ site.data.sidebarList.docs_list_title }}</h2> {% endcomment %}
-        {% comment %} <h2 class="side-menu-list-title">Menu</h2> {% endcomment %}
-        <nav>
-          <ul>
-            {% for item in site.data.sidebarList.docs %}
-                <li class="side-menu-list-item"><a href="{{ item.url }}">{{ item.title }}</a></li>
-            {% endfor %}
-          </ul>
-        </nav>
-      </div>
-    </div>
-
     <div class="blog-body">
       <div class="wrapper-masthead">
         <div class="container">
@@ -52,7 +38,7 @@
               ><img src="{{ site.avatar }}"
             /></a>
             {% endcomment %}
-
+ 
             <div class="site-info">
               <h1 class="site-name">
                 <a href="{{ site.baseurl }}/">{{ site.name }}</a>
@@ -79,8 +65,6 @@
             <a class="privacy-policy" href="{{ site.baseurl }}/policy"
               ><p>Privacy Policy</p></a
             >
-            
-            <p style="font-weight:bold">feel free to contact me: szwajkajakub@gmail.com</p>
           </div>
         </div>
       </div>    
