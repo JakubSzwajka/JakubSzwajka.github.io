@@ -1,0 +1,3 @@
+I"�<p>Most of the loading screens I saw, based on boolean variable <code class="language-plaintext highlighter-rouge">loading</code>. Then based on it, component <code class="language-plaintext highlighter-rouge">loadingScreen</code> is returned or the actual page. The more data I wanted to load, the more <code class="language-plaintext highlighter-rouge">if statements</code> I had to make to check if I am still loading. More such ifs sounds like a bad idea to me 🤷‍♀️.</p>
+
+:ET

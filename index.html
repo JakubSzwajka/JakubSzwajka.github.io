@@ -2,13 +2,14 @@
 layout: default
 ---
 
-{% comment %} {% for post in paginator.posts %}
+{% for post in paginator.posts %}
   <article class="post">
-    <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+    <p >{{ post.date | date: "%-d %B %Y" }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></p>
+    <!-- <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
 
     <div class="entry">{{ post.excerpt }}</div>
     <p class="post-date">{{ post.date | date: "%-d %B %Y" }}</p>
-    <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+    <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a> -->
   </article>
 {% endfor %}
 
@@ -29,15 +30,14 @@ layout: default
   {% endif %}
 </div>
 
-{% endcomment %}
 
-<h3 style="width: 100%; text-align: center;">Hi there! I've moved blog posts to github pages. Check it out <a href="https://jakub-szwajka.gitbook.io/blog-posts">here</a></h3>
+<!-- <h3 style="width: 100%; text-align: center;">Hi there! I've moved blog posts to github pages. Check it out <a href="https://jakub-szwajka.gitbook.io/blog-posts">here</a></h3>
 </br> 
 
 <h4 style="width: 100%; text-align: center;">If you want to see my cv check it <a href="/Jakub Szwajka - CV.pdf">here</a> ( outdate alert! )</h4>
 <h4 style="width: 100%; text-align: center;">Checking <a href="https://jakub-szwajka.gitbook.io/about-1/">this page</a> is better idea then my pdf above 👨‍💻</h4>
 
-</br> 
+</br>  -->
 
 <div style="text-align: center;">
   {% include subscribe_email.html %} 

@@ -1,0 +1,173 @@
+I"�E<p>Inspired by some Reddit question, I tried to find the most efficient way of solving model relations problem and making them useful for future extensions. While playing with models relations, I found that <a href="https://django-polymorphic.readthedocs.io/en/latest/">django-polymorphic</a> models can be a very useful extension. Let’s dive into the problem and solve it with django-polymorphic.</p>
+
+<!--more-->
+
+<h3 id="what-we-know">What we know:</h3>
+
+<ul>
+  <li>We have some products.</li>
+  <li>Products will have some sort of specification.</li>
+  <li>Products can be of different types, so specifications will be different.</li>
+  <li>Specification of the product will store information about the product, components, and their specification.</li>
+</ul>
+
+<h3 id="example">Example.</h3>
+
+<p>PC that has:</p>
+
+<ul>
+  <li>RAM memory 32 GB DDR4</li>
+  <li>CPU (Intel Core i5 6cores 4.5GH)</li>
+  <li>Power supply (100 W)</li>
+</ul>
+
+<p>Laptop:</p>
+
+<ul>
+  <li>RAM memory 16 GB DDR4</li>
+  <li>CPU (Intel Core i5 6cores 4.5GH)</li>
+  <li>Camera FaceTime HD 720p</li>
+</ul>
+
+<p>The first thing I see is that the specification model can be different in every product type. So maybe common for every laptop but different for PCs.</p>
+
+<p>Another thing to notice is that some specifications will have common components. Look at the CPU above. I think that making every component an object is a good idea. One model for CPUs, one for RAM, etc.</p>
+
+<p>Let’s start simple.
+Models for components:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Cpu</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">numberOfCores</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">frequency</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">4.5</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">numberOfCores</span><span class="si">}</span><span class="s"> - cores  </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">frequency</span><span class="si">}</span><span class="s">GH"</span>
+
+
+<span class="k">class</span> <span class="nc">RamMemmory</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">quantity</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">quantity</span><span class="si">}</span><span class="s"> GB </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="nb">type</span><span class="si">}</span><span class="s">"</span>
+
+
+<span class="k">class</span> <span class="nc">PowerSupply</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">power</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">power</span><span class="si">}</span><span class="s">W"</span>
+
+<span class="k">class</span> <span class="nc">Camera</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">resolution</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">720</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">resolution</span><span class="si">}</span><span class="s">p"</span>
+
+</code></pre></div></div>
+
+<p>Now let’s connect them in the specification. Inheritance is a good idea here. One thing to remember is that I can’t set SpecsAbstract as abstract, because the abstract model does not have Foreign Key. I left the abstract in the name to know that I will inherit from it later.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">SpecsAbstract</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> - </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">description</span><span class="si">}</span><span class="s">"</span>
+
+<span class="k">class</span> <span class="nc">PcSpecification</span><span class="p">(</span><span class="n">SpecsAbstract</span><span class="p">):</span>
+    <span class="n">cpu</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Cpu</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="p">.</span><span class="n">SET_NULL</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">ram</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">RamMemmory</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="p">.</span><span class="n">SET_NULL</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">powerSupply</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">PowerSupply</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="p">.</span><span class="n">SET_NULL</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">LaptopSpecification</span><span class="p">(</span><span class="n">SpecsAbstract</span><span class="p">):</span>
+    <span class="n">cpu</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Cpu</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="p">.</span><span class="n">SET_NULL</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">ram</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">RamMemmory</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="p">.</span><span class="n">SET_NULL</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">camera</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Camera</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="p">.</span><span class="n">SET_NULL</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Connect everything in Product model.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Product</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">spec</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">SpecsAbstract</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="p">.</span><span class="n">RESTRICT</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">"</span>
+</code></pre></div></div>
+
+<p>And that’s it. Now you can add different components to different specifications and connect them to Products.</p>
+
+<p>But here goes a single trick. If you try to get specification object instance from product instance, Django will return the base model (SpecsAbstract type).</p>
+
+<pre><code class="language-txt">&gt;&gt;&gt; Product.objects.first( ).spec
+&lt;SpecsAbstract: sample specification of laptop - test&gt;
+</code></pre>
+
+<p>The solution for this is to use <a href="https://django-polymorphic.readthedocs.io/en/latest/">django-polymorphic</a>. Instead of the base class, it will return the child model of the product specification.</p>
+
+<pre><code class="language-txt">&gt;&gt;&gt; Product.objects.first( ).spec
+&lt;LaptopSpecification: sample specification of laptop - test&gt;
+</code></pre>
+
+<p>To fix this just install django-polymorphic <code class="language-plaintext highlighter-rouge">pip install django-polymorphic</code>, add it in <code class="language-plaintext highlighter-rouge">settings.py</code> and change the SpecsAbstract class.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">polymorphic.models</span> <span class="kn">import</span> <span class="n">PolymorphicModel</span>
+
+<span class="k">class</span> <span class="nc">SpecsAbstract</span><span class="p">(</span><span class="n">PolymorphicModel</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> - </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">description</span><span class="si">}</span><span class="s">"</span>
+</code></pre></div></div>
+
+<h3 id="what-else">What else?</h3>
+
+<p>A few useful functionalities of django-polymorphic models.</p>
+
+<ul>
+  <li>Quering</li>
+</ul>
+
+<p>QuerySet will be Polymorphic now. Instead of returning related SpecsAbstract instances, child models instances will be returned.</p>
+
+<pre><code class="language-txt">&gt;&gt;&gt; SpecsAbstract.objects.all( )
+&lt;PolymorphicQuerySet [
+    &lt;PcSpecification: sample specification of PC - test&gt;,
+    &lt;LaptopSpecification: sample specification of laptop - test&gt;
+    ]&gt;
+</code></pre>
+
+<ul>
+  <li>instance_of and not_instance_of</li>
+</ul>
+
+<p>Get all child models instances of the given class, or all others without the given class.</p>
+
+<pre><code class="language-txt">&gt;&gt;&gt; SpecsAbstract.objects.instance_of(PcSpecification)
+&lt;PolymorphicQuerySet [&lt;PcSpecification: sample specification of PC - test&gt;]&gt;
+
+&gt;&gt;&gt; SpecsAbstract.objects.not_instance_of(PcSpecification)
+&lt;PolymorphicQuerySet [&lt;LaptopSpecification: sample specification of laptop - test&gt;]&gt;
+</code></pre>
+
+<ul>
+  <li>non_polymorphic</li>
+</ul>
+
+<p>In special cases, if you want your QuerySet to act like vanilla Django, you can use non_polymorphic method.</p>
+
+<pre><code class="language-txt">&gt;&gt;&gt; SpecsAbstract.objects.all( ).non_polymorphic( )
+&lt;PolymorphicQuerySet [
+    &lt;SpecsAbstract: sample specification of PC - test&gt;,
+    &lt;SpecsAbstract: sample specification of laptop - test&gt;
+    ]&gt;
+</code></pre>
+
+<p>And much more. Check the <a href="https://django-polymorphic.readthedocs.io/en/stable/advanced.html">docs</a> if you are interested.</p>
+:ET

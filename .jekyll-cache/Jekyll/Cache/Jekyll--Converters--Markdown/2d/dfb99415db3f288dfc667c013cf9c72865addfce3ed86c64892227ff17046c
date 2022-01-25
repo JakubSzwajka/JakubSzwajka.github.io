@@ -1,0 +1,158 @@
+I"90<p>Event system is not hard to build on your own. There are plenty of libraries ready to use, but for better understanding I want to implement it by myself.</p>
+
+<!--more-->
+
+<p>The idea of this post comes from <a href="video">this</a>. Today I was searching the internet for tips how to manage my project which has a lot of different modules and I wanted to do it nice and clean. One of the ideas I found is <a href="https://en.wikipedia.org/wiki/Observer_pattern">Observer</a> pattern from “Gang of four” book. This should be very simple implementation of it.</p>
+
+<p>First thing is that you have subscribers. They subscribe to different types of events. Every time the event is posted, you have to notify the subscriber about it.</p>
+
+<p>First create two methods for subscribing the event, and for posting.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># src/event.py
+</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="n">subscribers</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">subscribe</span><span class="p">(</span><span class="n">event_type</span><span class="p">,</span> <span class="n">fn</span><span class="p">):</span>
+    <span class="n">subscribers</span><span class="p">[</span><span class="n">event_type</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">post_event</span><span class="p">(</span><span class="n">event_type</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">event_type</span> <span class="ow">in</span> <span class="n">subscribers</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">subscribers</span><span class="p">[</span><span class="n">event_type</span><span class="p">]:</span>
+            <span class="n">fn</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>In this example I will be creating the new user which will invoke event <code class="language-plaintext highlighter-rouge">new_user_created</code>. Subscriber for this event will be module for sending welcome message by email.</p>
+
+<p>Let’s create a user. It will be simple dictionary, but it can be an object too.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># src/user.py
+</span>
+<span class="kn">from</span> <span class="nn">.event</span> <span class="kn">import</span> <span class="n">post_event</span>
+
+<span class="k">def</span> <span class="nf">register_new_user</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">email</span> <span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span> <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">,</span>
+                <span class="n">password</span> <span class="o">=</span> <span class="n">password</span><span class="p">,</span>
+                <span class="n">email</span> <span class="o">=</span> <span class="n">email</span><span class="p">)</span>
+
+    <span class="n">post_event</span><span class="p">(</span><span class="s">"new_user_created"</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>Now handle sending emails. We will need two things here. Some kind of email provider and some kind of handler for it. I want my email provider class to handle all ‘business logic’ only, so I created <code class="language-plaintext highlighter-rouge">modules</code> folder for such.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># src/modules/email.py
+</span>
+<span class="k">class</span> <span class="nc">Email</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">sendEmail</span><span class="p">(</span> <span class="n">email</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">message</span> <span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"=========================="</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"From: </span><span class="si">{</span><span class="n">email</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Subject: </span><span class="si">{</span><span class="n">subject</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"=========================="</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>And handler for email.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># src/email_handler.py
+</span>
+<span class="kn">from</span> <span class="nn">.modules.email</span> <span class="kn">import</span> <span class="n">Email</span>
+<span class="kn">from</span> <span class="nn">.event</span> <span class="kn">import</span> <span class="n">subscribe</span>
+
+<span class="k">def</span> <span class="nf">handle_user_registered_event</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
+    <span class="n">Email</span><span class="p">.</span><span class="n">sendEmail</span><span class="p">(</span><span class="n">user</span><span class="p">[</span><span class="s">'email'</span><span class="p">],</span> <span class="s">'Welcome!'</span><span class="p">,</span> <span class="s">'Some welcome message'</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">setup_email_event_handlers</span><span class="p">():</span>
+    <span class="n">subscribe</span><span class="p">(</span><span class="s">'new_user_created'</span><span class="p">,</span> <span class="n">handle_user_registered_event</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Now let’s connect everything together. Make an app file.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># src/app.py
+</span>
+<span class="kn">from</span> <span class="nn">src.user</span> <span class="kn">import</span> <span class="n">register_new_user</span>
+<span class="kn">from</span> <span class="nn">src.email_handler</span> <span class="kn">import</span> <span class="n">setup_email_event_handlers</span>
+
+<span class="n">setup_email_event_handlers</span><span class="p">()</span>
+
+<span class="n">register_new_user</span><span class="p">(</span><span class="s">'Jakub'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="s">'name@domain.com'</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>First thing to do is to set email handler events up. That means, subscribe to event <code class="language-plaintext highlighter-rouge">new_user_created</code>.</p>
+
+<p>If all the subscriptions are done, register new user. Output should be as follows.</p>
+
+<pre><code class="language-txt">==========================
+From: name@domain.com
+Subject: Welcome!
+Some welcome message
+==========================
+</code></pre>
+
+<h3 id="extend-the-system">Extend the system</h3>
+
+<p>What if we want to extend this. Let’s add some database. In modules, add <code class="language-plaintext highlighter-rouge">database.py</code> file and sample implementation of database as a list of users.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># src/modules/database.py
+</span>
+<span class="k">class</span> <span class="nc">DB</span><span class="p">:</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
+    <span class="k">def</span> <span class="nf">register_new_user</span><span class="p">(</span> <span class="n">user</span> <span class="p">):</span>
+        <span class="n">DB</span><span class="p">.</span><span class="n">users</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'======================='</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">DB</span><span class="p">.</span><span class="n">users</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'======================='</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>And handler for it.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># src/database_handler.py
+</span>
+<span class="kn">from</span> <span class="nn">.modules.database</span> <span class="kn">import</span> <span class="n">DB</span>
+<span class="kn">from</span> <span class="nn">.event</span> <span class="kn">import</span> <span class="n">subscribe</span>
+
+<span class="k">def</span> <span class="nf">handle_user_registered_event</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
+    <span class="n">DB</span><span class="p">.</span><span class="n">register_new_user</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">setup_database_event_handlers</span><span class="p">():</span>
+    <span class="n">subscribe</span><span class="p">(</span><span class="s">'new_user_created'</span><span class="p">,</span> <span class="n">handle_user_registered_event</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Now the only thing to do is set database handler up in app file.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># src/app.py
+</span>
+<span class="kn">from</span> <span class="nn">src.user</span> <span class="kn">import</span> <span class="n">register_new_user</span>
+<span class="kn">from</span> <span class="nn">src.email_handler</span> <span class="kn">import</span> <span class="n">setup_email_event_handlers</span>
+<span class="kn">from</span> <span class="nn">src.database_handler</span> <span class="kn">import</span> <span class="n">setup_database_event_handlers</span>
+
+<span class="n">setup_email_event_handlers</span><span class="p">()</span>
+<span class="n">setup_database_event_handlers</span><span class="p">()</span>
+
+<span class="n">register_new_user</span><span class="p">(</span><span class="s">'Jakub'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="s">'name@domain.com'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Now the result should be:</p>
+
+<pre><code class="language-txt">==========================
+From: name@domain.com
+Subject: Welcome!
+Some welcome message
+==========================
+==========================
+[{'name': 'Jakub', 'password': 'secret', 'email': 'name@domain.com'}]
+==========================
+</code></pre>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Nice thing about it, is that this way keeps your modules independent of each other and keeps their cohesion strong. Besides that, it allows you to manipulate order of listeners in event very quickly. No more ‘ctrl + c</td>
+      <td>ctrl + v’ whole code 😉.</td>
+    </tr>
+  </tbody>
+</table>
+:ET

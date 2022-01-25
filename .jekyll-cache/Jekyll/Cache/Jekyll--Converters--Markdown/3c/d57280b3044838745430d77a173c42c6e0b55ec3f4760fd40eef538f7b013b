@@ -1,0 +1,50 @@
+I"c<p>Should every dev blog has some “open source project that I’m currently working on in my free time”?? Probably not but I will show you mine. Just in case it should… 😉</p>
+
+<!--more-->
+
+<h3 id="why">Why?</h3>
+
+<p>It’s console client for <a href="https://todoist.com/">todoist</a> task management app. Whole idea comes from one reason.</p>
+
+<p>Too many open tabs in browser ⇨ Let’s close todoist ⇨ don’t look at tasks ⇨ don’t do tasks 😒.</p>
+
+<p>First think that came to my mind was a little widget on desktop but let’s be honest… I would close it too. So where I spend most of my time working? VS Code and console! The choice was simple. Almost as quick as checking <code class="language-plaintext highlighter-rouge">git status</code> I can type <code class="language-plaintext highlighter-rouge">todoist</code> and look at my tasks 🎉.</p>
+
+<h3 id="take-a-look">Take a look!</h3>
+
+<p><img src="https://github.com/JakubSzwajka/JakubSzwajka.github.io/blob/master/_posts/_images/todoist_1.png?raw=true" alt="Todoist_photo" /></p>
+
+<h3 id="lets-clear-something-up">Let’s clear something up</h3>
+
+<p>The goal was not to implement all todoist API functions in console. The goal was to build the fastest access to basic functions like <em>show tasks</em>, <em>add task</em>, <em>complete task</em>. I’m not going to describe all work here now, instead I’ll try to show you what you can learn from such simple ‘app’ 😉.</p>
+
+<h3 id="connection">Connection</h3>
+
+<p>I have used todoist <a href="https://developer.todoist.com/sync/v8/">Sync API</a> with python. It’s quite simple, all you need to have is your user token. Find it in your settings ⇨ integrations ⇨ token. Base on it create client object which will make all magic for you ✨.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">from</span> <span class="nn">todoist.api</span> <span class="kn">import</span> <span class="n">TodoistAPI</span>
+
+    <span class="n">client</span> <span class="o">=</span> <span class="n">TodoistAPI</span><span class="p">(</span><span class="s">'yourSuperSecretTokenGoesHereAsAString'</span><span class="p">)</span>
+    <span class="n">client</span><span class="p">.</span><span class="n">sync</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>And since then you have all your information up to date.</p>
+
+<h3 id="config">Config</h3>
+
+<p>I have prepared some config file. So far you can set your token and emojis there, but I hope it will grow a bit. You can set your token by passing it to JSON file, or I have prepared a command for you 🎀. It will load config, change it and save it again.</p>
+
+<ul>
+  <li><strong>To set the token</strong> use ` todoist –set-token your_token`.</li>
+</ul>
+
+<h3 id="make-it-work">Make it work!</h3>
+
+<p>Below are some basic commands. Remember that I’m still developing this project in my free time. You will probably see some differences. The most up-to-date version will be on <a href="https://github.com/JakubSzwajka/todoist_console_client">GitHub</a> so check out README file.</p>
+
+<ul>
+  <li><strong>To get tasks</strong> that are/were for today and those overdue use ` todoist list`.</li>
+  <li><strong>To add task</strong> with default date value as current day, you don’t have to use –date flag. In case you want to specify date use YYYY-MM-DD format. <code class="language-plaintext highlighter-rouge">todoist --add "name of your task" --date yyy-mm-dd</code>.</li>
+  <li><strong>To complete task</strong> <code class="language-plaintext highlighter-rouge">todoist --complete id_of_task</code>.</li>
+</ul>
+:ET
