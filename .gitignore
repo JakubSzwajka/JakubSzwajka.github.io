@@ -5,7 +5,7 @@ _site
 .bundle
 .vscode
 .sass-cache
-Gemfile
+# Gemfile
 Gemfile.lock
 node_modules
 package.json

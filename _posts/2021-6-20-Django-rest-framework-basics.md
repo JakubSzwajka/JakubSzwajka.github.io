@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Django rest framework - basics I wish to know before I started last project
-published: true
+published: false
 comments: true
 excerpt_separator: <!--more-->
 ---
