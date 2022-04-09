@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Things to remember when starting a new project
-published: true
+published: false
 comments: true
 excerpt_separator: <!--more-->
 ---

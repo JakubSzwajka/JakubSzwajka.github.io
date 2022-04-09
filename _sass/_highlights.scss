@@ -33,6 +33,8 @@ code {
   letter-spacing: 2px;
 }
 
+
+
 .highlight .c { color: #586E75 } /* Comment */
 .highlight .err { color: #93A1A1 } /* Error */
 .highlight .g { color: #93A1A1 } /* Generic */
@@ -170,3 +172,12 @@ code {
 // .highlight .vg { color: #268BD2 } /* Name.Variable.Global */
 // .highlight .vi { color: #268BD2 } /* Name.Variable.Instance */
 // .highlight .il { color: #2AA198 } /* Literal.Number.Integer.Long */
+
+
+
+.language-bash{
+  color: white !important;
+}
+.language-bash span{
+  color: white !important;
+}

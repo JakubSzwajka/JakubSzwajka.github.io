@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Different approach to loading screen in React
-published: true
+published: false
 comments: true
 excerpt_separator: <!--more-->
 ---
