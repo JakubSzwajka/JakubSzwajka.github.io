@@ -24,19 +24,21 @@ layout: default
 
 <br/>
 <br/>
-<p>
-  And the rest of stuff. Almost as good as donut 😜.
-</p>
+<h3 align="center">
+  And the rest of stuff. Almost as good as donut.
+</h3>
 <br/>
 
 {% for post in paginator.posts %}
   <article class="post">
-    <p >{{ post.date | date: "%-d %B %Y" }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></p>
-    <!-- <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
-
-    <div class="entry">{{ post.excerpt }}</div>
-    <p class="post-date">{{ post.date | date: "%-d %B %Y" }}</p>
-    <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a> -->
+    <div style="width: 20%; float: left;">
+      <p align="right">{{ post.date | date: "%-d %B %Y" }}</p>
+    </div>
+    <div style="width:80%; overflow: hidden;">
+      <p align="left" style="padding-left: 10px;">
+        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+      </p>
+    </div>
   </article>
 {% endfor %}
 
