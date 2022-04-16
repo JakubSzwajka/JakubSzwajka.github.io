@@ -19,8 +19,7 @@ html {
 
 body {
   background: $white;
-  font: 18px/1.4 $Calendas;
-  // font: 18px/1.4 $helvetica;
+  font: 22.5px/1.4 $Inter;
   color: $darkGray;
   display:flex;
 }
@@ -86,27 +85,27 @@ h6 {
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 50px;
   a {
     color: inherit;
   }
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 40px;
 }
 
 h3 {
-  font-size: 20px;
+  font-size: 35px;
 }
 
 h4 {
-  font-size: 18px;
+  font-size: 20px;
   color: $gray;
 }
 
 p {
-  margin: 15px 0;
+  margin: 22.5px 0;
 }
 
 a {
@@ -245,7 +244,7 @@ img {
   color: $darkGray;
   cursor: pointer;
   // font-family: $helveticaNeue;
-  font-family: $Calendas;
+  font-family: $Inter;
 
   font-weight: 300;
   font-size: 28px;
@@ -266,7 +265,7 @@ nav {
   float: right;
   margin-top: 23px; // @TODO: Vertically middle align
   // font-family: $helveticaNeue;
-  font-family: $Calendas;
+  font-family: $Inter;
   font-size: 18px;
 
   @include mobile {
@@ -351,7 +350,7 @@ footer {
 }
 
 .email-box-message {
-  font-family: $Calendas;
+  font-family: $Inter;
 }
 
 .contact-me {

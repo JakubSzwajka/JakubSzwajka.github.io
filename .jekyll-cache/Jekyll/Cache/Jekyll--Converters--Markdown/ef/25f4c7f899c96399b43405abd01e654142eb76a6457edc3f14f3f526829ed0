@@ -1,3 +1,0 @@
-I"•<p>Inspired by some Reddit question, I tried to find the most efficient way of solving model relations problem and making them useful for future extensions. While playing with models relations, I found that <a href="https://django-polymorphic.readthedocs.io/en/latest/">django-polymorphic</a> models can be a very useful extension. Letâ€™s dive into the problem and solve it with django-polymorphic.</p>
-
-:ET

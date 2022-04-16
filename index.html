@@ -2,6 +2,33 @@
 layout: default
 ---
 
+<p>
+  Hi 👋
+</p>
+
+<p>
+  Welcome to my place. My name is Kuba and I'm software developer. 
+  You can find here some notes and lots of coding stuff. Feel free to use it as you want 🤷‍♂️
+</p>
+
+<p>
+  I shoud point some of my best articles/posts/work now so here we go. Special for you my dear reader... THE DONUT. 
+</p>
+
+<br/>
+<img src="./resources/donut.gif" alt="this donut moves" width="300" style="margin-left: auto; margin-right: auto; display: block;" />
+
+<p align="center">
+  <a  href="https://github.com/JakubSzwajka/donut">Repo here</a>
+</p>
+
+<br/>
+<br/>
+<p>
+  And the rest of stuff. Almost as good as donut 😜.
+</p>
+<br/>
+
 {% for post in paginator.posts %}
   <article class="post">
     <p >{{ post.date | date: "%-d %B %Y" }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></p>
