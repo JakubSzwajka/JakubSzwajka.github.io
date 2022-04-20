@@ -1,16 +1,23 @@
 ---
 layout: post
-title: Ethereum ICO - Minted Crowdsale
-published: true
+title: Ethereum ICO - The token and crowdsale
+published: false
 comments: true
 excerpt_separator: <!--more-->
 ---
 
-The previous [post](https://jakubszwajka.github.io/Ethereum-token/) was about the ERC20 token. Now let's prepare Crowdsale for this token. I'll keep this Crowdsale simple here.
+The previous post was about ERC20 token. Now let's prepare Crowdsale for this token. I'll keep this Crowdsale simple here. The main properties will be: 
+
+* BonkToken will be minted,
+
+* There will be hard cap for this Crowdsale,
+
+* Min amount of eth to invest will be defined. We don't want to have "penny investors". 
+
 
 ## The Crowdsale 
 
-Creating a basic crowdsale follows the same steps as making a Token. Inheritance here is a blessing when creating new things quickly in Solidity (one-week Solidity dev opinion alert 😜).
+Creating basic crowdsale follows exact the same steps as making token. Inheritance here is a blessing when creating new thinks quickly in Solidity (one week Solidity dev opinion alert :p ).
 
 ```solidity
 pragma solidity 0.5.5;
@@ -29,7 +36,7 @@ contract BonkTokenCrowdsale is Crowdsale {
 }
 
 ```
-There is more magic to make in tests. Within the new file let's test the creation of Crowdsale with a proper token, rate to eth, and wallet address to raise some funds. 
+There is more magic to make in tests. Within new file lets test creation of Crowdsale with proper token, rate to eth, and wallet address to raise some funds. 
 
 ```js 
 contract('BonkTokenCrowdsale', function ([_, wallet, investor_1, investor_2]) {
@@ -38,7 +45,7 @@ contract('BonkTokenCrowdsale', function ([_, wallet, investor_1, investor_2]) {
 
         this.name = 'BonkToken';
         this.symbol = 'BNK';
-        this.decimals = new BN(2);
+        this.decimals = new BN(18);
 
         this.token = await BonkToken.new(
             this.name,
@@ -47,7 +54,7 @@ contract('BonkTokenCrowdsale', function ([_, wallet, investor_1, investor_2]) {
         );
 
 
-        this.rate = new BN(10);
+        this.rate = new BN(1000);
         this.wallet = wallet;
 
         this.crowdsale = await BonkTokenCrowdsale.new(
@@ -85,34 +92,17 @@ contract('BonkTokenCrowdsale', function ([_, wallet, investor_1, investor_2]) {
 
 ``` 
 
-So what is happening here: 
+So what is actually happening here: 
 
-* Create a new BonkToken and create Crowdsale with it. The rate is set to 10 but what does it mean? 
+* Create a new BonkToken and create Crowdsale with it. The rate is set to 1000, which means that 1000 BNK = 1 ETH. 
 
-> How many token units a buyer gets per wei. The rate is the conversion between wei and the smallest and indivisible token unit. So, if you are using a rate of 1 with a ERC20Detailed token with 3 decimals called TOK, 1 wei will give you 1 unit, or 0.001 TOK.
+* Next three checks are only about passing proper parameters to the constructor. I'll not dive into details :p 
 
-So we are using 16 decimals token in tests, and want to have rate:
-
- 1000 BNK <-> 1 ETH <-> 1000000000000000000 WEI. 
- 
-The rate 1 will give us 0.0000000000000001 BNK. Since we want to have 1 BNK <-> 0.0001 ETH <-> 1 000 000 000 000 000 WEI we need 10 smalest units of BNK for 1 WEI (0.0000000000000010 BNK <-> 1 WEI ), that means the rate should be 10.
-
-so:
-
-0.0000000000000010 BNK <-> 1 WEI and 1 ETH <-> 1000000000000000000 WEI. Use calculator 🤔. 
-
-> 0.~~00000000000000~~1 * 10000~~00000000000000~~ = 1000
-
-
-* Next three checks are only about passing proper parameters to the constructor. I'll not dive into details.
-
-* The last is about the possibility of making a transaction. Only checking if all promisses are fulfilled.
+* The last is about possibily of makeing a trasaction. TO FIX 
 
 ## Minted Crowdsale 
 
-As I said previously: next feature, next inheritance. Let's add MintedCrowdsale to BonkTokenCrowdsale. 
-
-When diving into the MintedCrowdsale contract, there is only _deliverToken( ) method. No need to consider any constructor changes. 
+As I said previously: next feature, next inheritance. Let's add MintedCrowdsale to BonkTokenCrowdsale. When diving into MintedCrowdsale contract, there is only _deliverToken( ) method. No need to consider any constructor changes. 
 
 ```solidity
 pragma solidity 0.5.5;
@@ -132,14 +122,15 @@ contract BonkTokenCrowdsale is Crowdsale, MintedCrowdsale {
 
 ```
 
-The thing to change is the BonkToken. Since the Crowdsale will mint our token it should be owned by it and mintable. Here comes the Ownable contract and ERC20Mintable contract. 
+The thing to change is the BonkToken. Since the Crowdsale will mint our token it should be owned by it and mintable. Here comes the Ownable contract and ERC20Mintable. 
 
-Ownable adds access control mechanizm to our token. After inheriting, some functions are restricted to be executed only by Owner.
+Ownable is about: 
 
-ERC20Mintable is explaining itself very well in dev docs: 
+* 
 
-> Extension of {ERC20} that adds a set of accounts with the {MinterRole}, which have permission to mint (create) new tokens as they see fit. At construction, the deployer of the contract is the only minter.
+and the ERC20Mintable adds: 
 
+* 
 
 The token looks like this after changes: 
 
@@ -163,7 +154,7 @@ contract BonkToken is ERC20Mintable, ERC20Detailed, Ownable{
 }
 ``` 
 
-Before we start testing minting the token by Crowdsale we need to transfer ownership of the token, to the newly created Crowdsale with the following functions in the beforeEach function: 
+Before we start testing Minting token by Crowdsale we need to transfer ownership of the token, to newly created Crowdsale with following functions in the beforeEach function: 
 
 ```js
 // create token 
@@ -190,4 +181,13 @@ Since then we can add some tests for minting.
     });
 
 ``` 
-This test is about minting new tokens. On every transaction made in Crowdsale, a total supply of BonkTokens should increase. 
+This test is about minting new tokens. On every transaction made in Crowdsale, total supply of BonkTokens should increase. 
+
+## Capped Crowdsale 
+
+
+
+```solidity
+
+
+```

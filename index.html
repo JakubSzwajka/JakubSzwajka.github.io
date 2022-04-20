@@ -8,11 +8,11 @@ layout: default
 
 <p>
   Welcome to my place. My name is Kuba and I'm software developer. 
-  You can find here some notes and lots of coding stuff. Feel free to use it as you want 🤷‍♂️
+  You can find some notes and lots of coding stuff here. Feel free to use it as you wish 🤷‍♂️
 </p>
 
 <p>
-  I shoud point some of my best articles/posts/work now so here we go. Special for you my dear reader... THE DONUT. 
+  I should point some of my best articles/posts/work now so here we go. Special for you my dear reader... THE DONUT. 
 </p>
 
 <br/>
@@ -32,10 +32,10 @@ layout: default
 {% for post in paginator.posts %}
   <article class="post">
     <div style="width: 20%; float: left;">
-      <p align="right">{{ post.date | date: "%-d %B %Y" }}</p>
+      <p align="right" style="margin: 0;">{{ post.date | date: "%-d %B %Y" }}</p>
     </div>
     <div style="width:80%; overflow: hidden;">
-      <p align="left" style="padding-left: 10px;">
+      <p align="left" style="margin: 0; padding-left: 10px;">
         <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
       </p>
     </div>
