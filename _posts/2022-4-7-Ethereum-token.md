@@ -7,9 +7,9 @@ excerpt_separator: <!--more-->
 ---
 
 One year passed since the very first post here. And half from the last one xd. Time to get cracking!
-Last year was huge in the crypto space. I sank into it too. The more I'm learning (losing money), the more I'am into it. So here we are learning solidity and having fun! 
+Last year was huge in the crypto space. I sank into it too. The more I'm learning (losing money), the more I'm into it. So here we are learning solidity and having fun! 
 
-The starting point is always the same: some tutorial. Let's give some kudos to [Dapp Univeristy](https://www.youtube.com/channel/UCY0xL8V6NzzFcwzHCgB8orQ) for making a lot of them! I'm following [real world ico](https://www.youtube.com/watch?v=ir-IRmMTG4Q&list=PLS5SEs8ZftgULF-lbxy-is9x_7mTMHFIN&index=2) tutorial but this part is only about creating Token with a few extra changes.
+The starting point is always the same: some tutorial. Let's give some kudos to [Dapp University](https://www.youtube.com/channel/UCY0xL8V6NzzFcwzHCgB8orQ) for making a lot of them! I'm following a [real-world ico](https://www.youtube.com/watch?v=ir-IRmMTG4Q&list=PLS5SEs8ZftgULF-lbxy-is9x_7mTMHFIN&index=2) tutorial but this part is only about creating Token with a few extra changes.
 
 let's start!
 
@@ -18,7 +18,7 @@ oh.. one more. My code is [here](https://github.com/JakubSzwajka/ethereum_ico)!
 
 ## ICO? 
 
-A little bit of theory. ICO (Initial Coin offering) is the way of raising capital by companies. You give them money, they give you tokens. And that is basicaly it. So the goal is to create some token for you and let you pay me for it with BTC for example. Whoooa! 💸 
+A little bit of theory. ICO (Initial Coin Offering) is a way of raising capital by companies. You give them money, they give you tokens. And that is basically it. So the goal is to create some token for you and let you pay me for it with BTC for example. Whoooa! 💸 
 
 ## Some basics 
 
@@ -30,7 +30,7 @@ Since this is my first solidity project, I think it is worth to wrote down some 
 npm install -g truffle
 ```
 
-Then you can check your truffle version with: ``truffle version`` command. It will print some more information witch is quite useful. 
+Then you can check your truffle version with: ``truffle version`` command. It will print some more information which is quite useful. 
 
 ```txt
 Truffle v5.5.7 (core: 5.5.7)
@@ -41,21 +41,21 @@ Web3.js v1.5.3
 ```
 To initialize project structure run: ``truffle init`` 
 
-**You need some ethereum based blockchain on your machine and cli for it. It would be nice to test everything locally.**
+**You need some Ethereum based blockchain on your machine and CLI for it. It would be nice to test everything locally.**
 
 ```bash
 npm install -g ganache-cli
 ```
 
-To run blockchain with ganache: ``ganache-cli``. Bum! blockchain running!
+To run blockchain with ganache: ``ganache-cli``. Bum! blockchain is running!
 
 Extra note: 
 
-I had some problems while migrating my contracts to ganache. I couldn't connect with it. Running ganache-cli with specified port and host was helpful. Consider using ``ganache-cli -h localhost -p 8545``.
+I had some problems while migrating my contracts to Ganache. I couldn't connect with it. Running ganache-cli with specified port and host was helpful. Consider using ``ganache-cli -h localhost -p 8545``.
 
-## The token
+## The Token
 
-Thanks to openzeppelin-solidity, creating token based on ERC20 is just inheriting from ERC20 class. Mine will be called BonkToken. Don't ask me why :) 
+Thanks to openzeppelin-solidity, creating token based on ERC20 is just inheriting from ERC20 class. Mine will be called BonkToken. Don't ask me why 😜
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -73,11 +73,11 @@ contract BonkToken is ERC20{
 }
 ```
 
-And that is basicaly it ;) You can inherit from other classes to add functionalities and other properties to your token. Now run ``truffle compile`` to check if everything is ok!
+And that is basically it. You can inherit from other classes to add functionalities and other properties to your token. Now run ``truffle compile`` to check if everything is ok!
 
 ## Migration 
 
-Migration is basicly specifying how your contract should be deployed into the network. Network params are specified in truffle-config.js file. 
+Migration is about specifying how your contract should be deployed into the network. Network params are specified in truffle-config.js file. 
 
 ```solidity
 const BonkToken = artifacts.require("./BonkToken.sol");
@@ -92,7 +92,7 @@ After defining migration, run ``truffle migrate``.
 
 ## Tests 
 
-Since I'm new to solidity and JS too actually, I was writing my tests based on [openzeppelin mostly](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/test/token/ERC20/ERC20.test.js) and some tutorial tips.
+Since I'm new to solidity and JS, I was writing my tests based on [openzeppelin mostly](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/test/token/ERC20/ERC20.test.js) and some tutorial tips.
 
 So the basic test for name and symbol of our token should look like:
 
@@ -124,7 +124,7 @@ contract('BonkToken', accounts => {
 
 ```
 
-To run those tests, make sure you have Ganache running (``ganache-cli ``) and run ``truffle test``. Result should look like: 
+To run those tests, make sure you have Ganache running (``ganache-cli ``) and run ``truffle test``. Results should look like: 
 
 ```bash
   Contract: BonkToken
@@ -137,11 +137,11 @@ To run those tests, make sure you have Ganache running (``ganache-cli ``) and ru
   2 passing (269ms)
 ```
 
-## Extending token 
+## Extending Token 
 
-So just for practice I wanted to extend my token with decimals field as it is in tutorial. The difference is that I'm inheriting from ERC20 which has a only symbol and name parameters in constructor. ERC20 by default returns 18 for decimals. 
+So just for practice, I wanted to extend my token with the decimals field as it is in the tutorial. The difference is that I'm inheriting from ERC20 which has the only symbol and name parameters in the constructor. ERC20 by default returns 18 for decimals. 
 
-So first things first, I've added tests which ofc failed. Extended test file should look like: 
+So first things first, I've added tests which ofc failed. The extended test file should look like this: 
 
 ```js
 const BonkToken = artifacts.require('BonkToken');
@@ -199,8 +199,8 @@ contract BonkToken is ERC20{
     }
 }
 ```
-* I've added new parameter for BonkToken in constructor which will set contract property. Easy peasy
-* In [ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol), function decimals returns 18 by default. Since I wanted to have it parametrized (ofc. I will leave it 18 xd), I've simply override decimals function with returning _decimals parameter. 
+* I've added a new parameter for BonkToken in the constructor which will set contract property. Easy peasy
+* In [ERC20](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol), function decimals returns 18 by default. Since I wanted to have it parametrized (ofc. I will leave it 18 xd), I've simply overridden decimals function with returning _decimals parameter. 
 
 
 ## Deploy token to network
