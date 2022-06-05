@@ -6,20 +6,20 @@ comments: true
 excerpt_separator: <!--more-->
 ---
 
-I’m a big fan of classes and sometimes I do OOP, event if it is not necessary. But hey, everyone has its own style!
+I’m a big fan of classes and sometimes I do OOP, even if it is not necessary. But hey, everyone has their own style!
 
 ## The problem
 
-I don’t know why, but I had this opinion that when testing views I should go with class approach. The problem appears when I wanted to load fixture in single test. YOU CAN’T! And there is even a note in docs. 
+I don't know why, but I had this opinion that when testing views I should go with the class approach. The problem appears when I wanted to load fixtures in a single test. YOU CAN'T! And there is even a note in docs.
 
 > ``unittest.TestCase`` methods cannot directly receive fixture arguments as implementing that is likely to inflict on the ability to run general unittest.TestCase test suites. The above ``usefixtures`` and ``autouse`` examples should help to mix in pytest fixtures into unittest suites. You can also gradually move away from subclassing from ``unittest.TestCase`` to *plain asserts* and then start to benefit from the full pytest feature set step by step.
 
 
-And quick note. Do not hate me because of test naming. It is just to show you sth.  
+AAnd a quick note. Do not hate me because of test naming. It is just to show you sth.
 
 ## Solution 1
 
-Ok. So let’s start with usefixtures. Basically you can import fixture by its name with string value and it works.
+Ok. So let's start with usefixtures. Basically, you can import fixtures by their name with string value and it works.
 
 ```python
 # /test_views.py
@@ -33,7 +33,7 @@ class ExerciseViewTestCase(TestCase):
 			assert response.data != []
 ```
 
-Also if you want to use this exercise feature across multiple tests in this class you can go with: 
+Also if you want to use this exercise feature across multiple tests in this class you can go with:
 
 ```python
 # /test_views.py
@@ -47,11 +47,11 @@ class ExerciseViewTestCase(TestCase):
 				assert response.data != []
 ```
 
-I had this exercise in response. But hey! I wanted to know if it is exactly this exercise I’m importing with fixtures, so I needed its instance in argument! 
+I had this exercise in response. But hey! I wanted to know if it is exactly this exercise I'm importing with fixtures, so I needed its instance in an argument!
 
-The problem is as they said.. “…cannot directly receive fixture arguments…”.  🙁 
+The problem is as they said.. "…cannot directly receive fixture arguments…". 🙁
 
-The walk-around which is for me MUCH BETTER/CLEANER/**SEXIER** solution now, is to get rid of TestCase class. 
+The walk-around which is for me a MUCH BETTER/CLEANER/SEXIER solution now is to get rid of TestCase class.
 
 ## Solution 2
 
@@ -61,7 +61,7 @@ So what do we need:
 - Logged user
 - Exercise fixture
 
-Superuser and its Client can be a fixture too. 
+Superuser and its Client can be a fixture too.
 
 ```python
 # /conftest.py
@@ -87,11 +87,11 @@ def superuser_client(superuser):
     return client
 ```
 
-I had the token authentication so after logging I needed to update defaults argument in Client instance. 
+I had the token authentication so after logging I needed to update the defaults argument in the Client instance.
 
-After this I can import as argument a superuser_client. It will be logged (with token set) and ready to make requests. 
+After this, I can import as an argument a superuser_client. It will be logged (with token set) and ready to make requests.
 
-Let’s go back to this sexy test. 
+Let's go back to this sexy test.
 
 ```python
 # /test_views.py 
@@ -103,6 +103,7 @@ def test_endpoint_should_return_list_of_exercises(client_with_superuser, exercis
     assert response.data[0].get('id') == exercise_instance.id
 ```
 
-Smooth.. 
+Smooth...
 
 Cheers!
+
