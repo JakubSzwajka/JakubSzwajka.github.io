@@ -6,7 +6,7 @@ comments: true
 excerpt_separator: <!--more-->
 ---
 
-I’m a big fan of classes and sometimes I do OOP, even if it is not necessary. But hey, everyone has their own style!
+I’m a big fan of classes and sometimes I do OOP, even if it is not necessary. But hey, everyone has their style!
 
 ## The problem
 
