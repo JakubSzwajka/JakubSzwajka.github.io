@@ -1,27 +1,24 @@
----
-layout: default
----
+# Jakub Szwajka 
+
+email: szwajkajakub@gmail.com   
+phone: +48 696 657 022  
+github: [https://github.com/JakubSzwajka](https://github.com/JakubSzwajka)  
+linkedIn: [https://www.linkedin.com/in/jakub-szwajka/](https://www.linkedin.com/in/jakub-szwajka/)  
+Dev.to: [https://dev.to/kuba_szw](https://dev.to/kuba_szw)
 
 
-<!-- ## PROFILES
-- https://github.com/JakubSzwajka
-- https://www.linkedin.com/in/jakub-szwajka/
-- https://dev.to/kuba_szw -->
-
-Hi there 👋
-
-I am a programmer with three years of experience in building and maintaining apps within a different stacks. Starting from WordPress plugins, through  SAP projects, ending with full-stack web development. I've managed to finish lots of projects as a team member and a few as a one-man army🔫.
+I am a programmer with three years of experience in building and maintaining apps within a different stacks. Starting from WordPress plugins, through  SAP projects, ending with full-stack web development. I've managed to finish lots of projects as a team member and a few as a one-man army.
 
 Django and React are my weapons of choice. I'm currently learning JS and Solidity a lot since I'm becoming a bigger and bigger fan of Web3. 
 
-# Experience
+## Experience
 
 ### August 2021 - present. TietoEvry
 #### Software Engineer
 
 - Implemented new features in fleet management web app with Django.
 - Took active part in designing, reviewing, and refining new features.  
-- Worked with legacy code and made key components refactor to increase the speed of the extending existing codebase.
+- Worked with legacy code and made key components refactor to increase the speed of extending existing codebase.
 
 
 ### Jun 2019 - present. BTech Sp. z o,o,
@@ -38,13 +35,12 @@ Django and React are my weapons of choice. I'm currently learning JS and Solidit
 - Made a desktop app with Java for digitally signing payment documents from SAP with XAdES standard. 
 - Standard enhancements using BTE in FI module for generating payment proposals.
 
-# Education
+## Education
 - WWSIS Horyzont. Engineering studies in the field of computer science
 September 2018 - March 2021
 
 
-## Other
-
+## Other projects
 - Car tracking and counting from a static camera using OpenCV only. 
 - 3D visualization of spinning donut using ASCII characters.
 - Wordpress Website - www.robertszwajka.pl
