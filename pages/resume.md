@@ -8,15 +8,21 @@ layout: default
 - https://www.linkedin.com/in/jakub-szwajka/
 - https://dev.to/kuba_szw -->
 
-Hi there 👋
+<!-- Hi there 👋
 
 I am a programmer with three years of experience in building and maintaining apps within a different stacks. Starting from WordPress plugins, through  SAP projects, ending with full-stack web development. I've managed to finish lots of projects as a team member and a few as a one-man army🔫.
 
 Django and React are my weapons of choice. I'm currently learning JS and Solidity a lot since I'm becoming a bigger and bigger fan of Web3. 
 
-# Experience
+# Experience -->
 
-### August 2021 - present. TietoEvry
+### June 2022 - Present. Sofomo
+#### Software Engineer
+
+- Doing only cool coding stuff. More on that later! 
+
+
+### August 2021 - May 2022 TietoEvry
 #### Software Engineer
 
 - Implemented new features in fleet management web app with Django.

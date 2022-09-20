@@ -4,6 +4,7 @@ title: Calling SAP RFC modules from Python - what you need to remember
 published: true
 comments: true
 excerpt_separator: <!--more-->
+tags: Python SAP
 ---
 
 One of the most popular ways to obtain data from SAP system is OData. To set it up, you need at least basic knowledge about ABAP and SAP. There is another way too using mainly Python.

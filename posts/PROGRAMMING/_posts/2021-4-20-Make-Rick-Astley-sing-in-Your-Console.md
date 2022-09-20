@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Make Rick Astley sing in your console 🎙
+title: Make Rick Astley sing in your console
 published: true
 comments: true
 excerpt_separator: <!--more-->
+tags: Python
 ---
 
 This is kind of post that I'm still thinking why I did that 🤔. But remember that not every line of code should be serious. Keep it fun! 🎙

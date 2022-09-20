@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Maping coordinates from video frame to technical projection 🤓
+title: Maping coordinates from video frame to technical projection
 published: true
 comments: true
 excerpt_separator: <!--more-->
+tags: Python
 ---
 
 Many google search results led me here. Hope one of yours will lead you here and this post will shorten your suffering.

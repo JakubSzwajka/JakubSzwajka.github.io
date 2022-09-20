@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+{% for cat in site.categories %}
+    {% if cat[0] != "posts" %}
+        <div class="articlesCategory">
+            {% assign cat_data = site.content.categories | where:"key", cat[0] | first %}
+            <h4>{{cat_data.icon}} {{cat_data.name}}</h4>
+            <p>{{cat_data.info}}</p>
+        </div>
+        <div class="articlesListByCategory">
+            {% for post in cat[1] %}
+                <div class="articleList">
+                    <div class="articleListLink">
+                        <a href="{{ post.url }}">{{ post.title }}</a>
+                    </div>
+                    <div class="articleListTime">
+                        <p align="right" style="margin: 0;">{{ post.date | date: "%-d %B %Y" }}</p>
+                    </div>
+                </div>
+                <div style="border-top: 1px solid rgb(238, 238, 238); margin-bottom: 10px;"></div>    
+            {% endfor %}
+        </div>
+
+        <!-- {% for tag in site.tags %}
+            {% assign tag_data = site.content.tags | where:"name", tag[0] | first %}
+            {{tag_data}}
+            <h5>{{ tag[0] }}</h5>
+            <ul>
+                {% for post in tag[1] %}
+                    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+                {% endfor %}
+            </ul>
+
+        {% endfor %} -->
+    {% endif %}
+{% endfor %}

@@ -4,6 +4,7 @@ title: Django logging - forget about 'print' when debugging
 published: true
 comments: true
 excerpt_separator: <!--more-->
+tags: Python Django
 ---
 
 Let the first one cast the stone who didn't use the print statement to debug and forgot to remove it after! What if I tell you that you can build your 'prints' system while developing? Setting logging in Django is quite simple. I've summed up Django [docs](https://docs.djangoproject.com/en/3.2/topics/logging/) about logging in form of a quick snippet. There are a few logging ideas that help me a lot. Hope you find it useful.

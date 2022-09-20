@@ -4,6 +4,7 @@ title: How Python defaultdict made my day
 published: true
 comments: true
 excerpt_separator: <!--more-->
+tags: Python
 ---
 
 Mission for today: Kill nasty if statements that you don't want to care about!

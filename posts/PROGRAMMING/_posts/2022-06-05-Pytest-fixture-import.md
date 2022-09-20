@@ -1,12 +1,15 @@
 ---
 layout: post
-title: I don’t want to use TestCase class anymore!
+title: I don’t want to use TestCase class anymore - why I'm using functions instead of test class in pytest
 published: true
 comments: true
 excerpt_separator: <!--more-->
+tags: Python Pytest
 ---
 
 I’m a big fan of classes and sometimes I do OOP, even if it is not necessary. But hey, everyone has their style!
+
+<!--more-->
 
 ## The problem
 

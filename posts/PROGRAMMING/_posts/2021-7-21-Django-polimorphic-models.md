@@ -4,6 +4,7 @@ title: Django polymorphic - playing with models inheritance in Django
 published: true
 comments: true
 excerpt_separator: <!--more-->
+tags: Python Django
 ---
 
 Inspired by some Reddit question, I tried to find the most efficient way of solving model relations problem and making them useful for future extensions. While playing with models relations, I found that [django-polymorphic](https://django-polymorphic.readthedocs.io/en/latest/) models can be a very useful extension. Let's dive into the problem and solve it with django-polymorphic.

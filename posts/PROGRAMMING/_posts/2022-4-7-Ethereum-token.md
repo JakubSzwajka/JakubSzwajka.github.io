@@ -4,10 +4,13 @@ title: My first Ethereum token
 published: true
 comments: true
 excerpt_separator: <!--more-->
+tags: Solidity Web3
 ---
 
 One year passed since the very first post here. And half from the last one xd. Time to get cracking!
 Last year was huge in the crypto space. I sank into it too. The more I'm learning (losing money), the more I'm into it. So here we are learning solidity and having fun! 
+
+<!--more-->
 
 The starting point is always the same: some tutorial. Let's give some kudos to [Dapp University](https://www.youtube.com/channel/UCY0xL8V6NzzFcwzHCgB8orQ) for making a lot of them! I'm following a [real-world ico](https://www.youtube.com/watch?v=ir-IRmMTG4Q&list=PLS5SEs8ZftgULF-lbxy-is9x_7mTMHFIN&index=2) tutorial but this part is only about creating Token with a few extra changes.
 

@@ -4,6 +4,7 @@ title: Django rest framework - basics I wish to know before I started last proje
 published: false
 comments: true
 excerpt_separator: <!--more-->
+tags: Python Django
 ---
 
 The idea is to gather all information how to set up API endpoints based on model in Django and create some kind of cheat sheet.

@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Mocking API in Python 🐍
+title: Mocking API in Python
 published: true
 comments: true
 excerpt_separator: <!--more-->
+tags: Python Pytest
 ---
 
 They said that cool guys test their code. So I have tried. You can find here some samples for quick mocking API in your project. I've used it in my [console client for todoist](https://jakubszwajka.github.io/Todoist-Console-Client/).

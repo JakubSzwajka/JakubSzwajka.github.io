@@ -4,9 +4,12 @@ title: Ethereum ICO - Minted Crowdsale
 published: true
 comments: true
 excerpt_separator: <!--more-->
+tags: Web3 Solidity
 ---
 
 The previous [post](https://jakubszwajka.github.io/Ethereum-token/) was about the ERC20 token. Now let's prepare Crowdsale for this token. I'll keep this Crowdsale simple here.
+
+<!--more-->
 
 ## The Crowdsale 
 

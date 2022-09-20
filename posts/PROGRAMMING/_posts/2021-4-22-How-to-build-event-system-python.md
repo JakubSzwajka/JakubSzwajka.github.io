@@ -4,6 +4,7 @@ title: Build your own event system in python
 published: true
 comments: true
 excerpt_separator: <!--more-->
+tags: Python
 ---
 
 Event system is not hard to build on your own. There are plenty of libraries ready to use, but for better understanding I want to implement it by myself.

@@ -19,7 +19,7 @@ html {
 
 body {
   background: $white;
-  font: 22.5px/1.4 $Inter;
+  font: 20px/1.5 $Inter;
   color: $darkGray;
   display:flex;
 }
@@ -29,30 +29,6 @@ body {
   overflow: scroll;
   height: 100vh;
 }
-
-// .side-bar-navigation-wrapper{
-//   padding-right: 70px;
-//   height: 100vh;
-//   border-right: 2px solid black;
-//   min-width: 350px;
-//   background-color: #222222;
-
-// }
-
-// .side-menu-list-item {
-//   list-style: none;
-//   margin-bottom: 5px;
-//   a {
-//     color:white;
-//     font-size: 20px;
-//   }
-// }
-
-// .side-menu-list-title{
-//   color: white;
-//   text-align: center;
-//   width: 100%;
-// }
 
 .container {
   margin: 0 auto;
@@ -71,7 +47,6 @@ h3,
 h4,
 h5,
 h6 {
-  // font-family: $helveticaNeue;
   color: $darkerGray;
   font-weight: bold;
 
@@ -243,7 +218,6 @@ img {
   margin: 0;
   color: $darkGray;
   cursor: pointer;
-  // font-family: $helveticaNeue;
   font-family: $Inter;
 
   font-weight: 300;
@@ -264,7 +238,6 @@ img {
 nav {
   float: right;
   margin-top: 23px; // @TODO: Vertically middle align
-  // font-family: $helveticaNeue;
   font-family: $Inter;
   font-size: 18px;
 
@@ -279,7 +252,9 @@ nav {
     margin-left: 20px;
     color: $darkGray;
     text-align: right;
-    font-weight: 300;
+    font: $InterBold;
+    // font-weight: bold;
+    font-size: medium;
     letter-spacing: 1px;
 
     @include mobile {
@@ -370,3 +345,20 @@ footer {
 @import "highlights";
 @import "svg-icons";
 
+.articleList{
+  overflow: hidden;
+}
+
+.articleListLink{
+  color: black;
+  font-weight: 300;
+  width: 80%;
+  margin: 0;
+  float: left;
+}
+.articleListTime{
+  overflow: hidden;
+  margin: 0;
+  width: 20%;
+  text-align: right;
+}

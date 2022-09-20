@@ -4,6 +4,7 @@ title: Ethereum ICO - The token and crowdsale
 published: false
 comments: true
 excerpt_separator: <!--more-->
+tags: Solidity Web3
 ---
 
 The previous post was about ERC20 token. Now let's prepare Crowdsale for this token. I'll keep this Crowdsale simple here. The main properties will be: 
@@ -14,6 +15,7 @@ The previous post was about ERC20 token. Now let's prepare Crowdsale for this to
 
 * Min amount of eth to invest will be defined. We don't want to have "penny investors". 
 
+<!--more-->
 
 ## The Crowdsale 
 

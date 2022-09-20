@@ -8,66 +8,8 @@ layout: default
 
 <p>
   Welcome to my place. My name is Kuba and I'm software developer. 
-  You can find some notes and lots of coding stuff here. Feel free to use it as you wish 🤷‍♂️
+  You can find some notes and lots of coding stuff here. Feel free to use it as you wish! 
 </p>
-
-<p>
-  I should point some of my best articles/posts/work now so here we go. Special for you my dear reader... THE DONUT. 
-</p>
-
-<br/>
-<img src="./resources/donut.gif" alt="this donut moves" width="300" style="margin-left: auto; margin-right: auto; display: block;" />
-
-<p align="center">
-  <a  href="https://github.com/JakubSzwajka/donut">Repo here</a>
-</p>
-
-<br/>
-<br/>
-<h3 align="center">
-  And the rest of stuff. Almost as good as donut.
-</h3>
-<br/>
-
-{% for post in paginator.posts %}
-  <article class="post">
-    <div style="width: 20%; float: left;">
-      <p align="right" style="margin: 0;">{{ post.date | date: "%-d %B %Y" }}</p>
-    </div>
-    <div style="width:80%; overflow: hidden;">
-      <p align="left" style="margin: 0; padding-left: 10px;">
-        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-      </p>
-    </div>
-  </article>
-{% endfor %}
-
-<!-- Pagination links -->
-<div class="pagination">
-  {% if paginator.previous_page %}
-  <a href="{{ paginator.previous_page_path }}" class="previous"> Previous </a>
-  {% else %}
-  <span class="previous">Previous</span>
-  {% endif %}
-  <span class="page_number">
-    Page: {{ paginator.page }} of {{ paginator.total_pages }}
-  </span>
-  {% if paginator.next_page %}
-  <a href="{{ paginator.next_page_path }}" class="next">Next</a>
-  {% else %}
-  <span class="next">Next</span>
-  {% endif %}
-</div>
-
-
-<!-- <h3 style="width: 100%; text-align: center;">Hi there! I've moved blog posts to github pages. Check it out <a href="https://jakub-szwajka.gitbook.io/blog-posts">here</a></h3>
-</br> 
-
-<h4 style="width: 100%; text-align: center;">If you want to see my cv check it <a href="/Jakub Szwajka - CV.pdf">here</a> ( outdate alert! )</h4>
-<h4 style="width: 100%; text-align: center;">Checking <a href="https://jakub-szwajka.gitbook.io/about-1/">this page</a> is better idea then my pdf above 👨‍💻</h4>
-
-</br>  -->
-
-<div style="text-align: center;">
-  {% include subscribe_email.html %} 
-</div>
+<h2>
+  This site was moved <a href="https://kuba-szwajka.super.site/">here</a>. Check it out! It is much better!
+</h2>
